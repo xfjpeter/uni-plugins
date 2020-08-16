@@ -127,6 +127,7 @@ data() {
 | pillsBorderRadius | String  |  '10rpx'  |         胶囊圆角宽度(rpx 或 px)          |
 |       field       | String  |    ''     | 如果 tabs 子项是对象，输入需要展示的键名 |
 |      bgColor      | String  |  '#fff'   |    背景色，支持 linear-gradient 渐变     |
+|      padding      | String  |    '0'    |          整个 tab padding 属性           |
 
 ### 2、事件说明
 
@@ -138,8 +139,9 @@ data() {
 
 ### 2020-08-16
 
-1. 修改默认高度为 `80rpx`
+1. 修改默认高度为 `70rpx`
 2. 新增属性 `bgColor`，可设置背景颜色，默认 `#fff`
+3. 新增整个 `tab` 的 `padding` 属性，默认 `0`
 
 ### 2020-08-13
 
@@ -149,4 +151,4 @@ data() {
 
 ## 预览
 
-![v-tabs 2.0.gif](https://cxh-1300709071.cos.ap-chengdu.myqcloud.com/cxh/v-tabs%202.0.gif)
+![v-tabs 2.0.gif](https://tva1.sinaimg.cn/large/007S8ZIlgy1ghsv40mj76g30ai0i2tsd.gif)

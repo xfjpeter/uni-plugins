@@ -1,6 +1,7 @@
 <template>
   <view :id="elId" class="v-tabs" :style="{
-    background: bgColor
+    background: bgColor,
+    padding
   }">
     <scroll-view :scroll-x="scroll" :scroll-left="scroll ? scrollLeft : 0" :scroll-with-animation="scroll">
       <view class="v-tabs__container" :style="{
@@ -16,7 +17,7 @@
             color: current == i ? activeColor : color,
             fontSize: current == i ? fontSize : fontSize,
             fontWeight: bold && current == i ? 'bold' : '',
-            textAlign: !scroll ? 'center' : ''
+            justifyContent: !scroll ? 'center' : ''
           }"
           @click="change(i)"
         >
@@ -74,13 +75,17 @@ export default {
     },
     tabs: {
       type: Array,
-      default() {
+      default () {
         return []
       }
     },
     bgColor: {
       type: String,
       default: '#fff'
+    },
+    padding: {
+      type: String,
+      default: '0'
     },
     color: {
       type: String,
@@ -108,10 +113,10 @@ export default {
     },
     height: {
       type: String,
-      default: '80rpx'
+      default: '70rpx'
     },
     lineColor: {
-      type:String,
+      type: String,
       default: '#2979ff'
     },
     lineHeight: {
@@ -143,7 +148,7 @@ export default {
       default: ''
     }
   },
-  data() {
+  data () {
     return {
       elId: '',
       lineWidth: 30,
@@ -156,19 +161,19 @@ export default {
     }
   },
   watch: {
-    value(newVal) {
+    value (newVal) {
       this.current = newVal
       this.$nextTick(() => {
         this.getTabItemWidth()
       })
     },
-    current(newVal) {
+    current (newVal) {
       this.$emit('input', newVal)
     }
   },
   methods: {
     // 产生随机字符串
-    randomString(len) {
+    randomString (len) {
       len = len || 32
       let $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678'    /****默认去掉了容易混淆的字符oOLl,9gq,Vv,Uu,I1****/
       let maxPos = $chars.length
@@ -179,17 +184,17 @@ export default {
       return pwd
     },
     // 切换事件
-    change(index) {
+    change (index) {
       this.current = index
-      
+
       this.$nextTick(() => {
         this.getTabItemWidth()
       })
-      
+
       this.$emit('change', index)
     },
     // 获取左移动位置
-    getTabItemWidth() {
+    getTabItemWidth () {
       let query = uni.createSelectorQuery().in(this)
       // 获取容器的宽度
       query.select(`#${this.elId}`).boundingClientRect((data) => {
@@ -222,11 +227,11 @@ export default {
         if (this.scroll) {
           this.scrollLeft = this.lineLeft - this.containerWidth / 2
         }
-        
+
       }).exec()
     }
   },
-  mounted() {
+  mounted () {
     this.elId = 'xfjpeter_' + this.randomString()
     this.current = this.value
     this.$nextTick(() => {
@@ -240,7 +245,7 @@ export default {
 .v-tabs {
   width: 100%;
   overflow: hidden;
-  
+
   &__container {
     position: relative;
     display: inline-flex;
@@ -249,7 +254,9 @@ export default {
     overflow: hidden;
 
     &-item {
-      // height: 30px;
+      display: flex;
+      align-items: center;
+      height: 100%;
       position: relative;
       z-index: 10;
       flex: 1;
@@ -257,17 +264,17 @@ export default {
       transition: all 0.3s;
       white-space: nowrap;
     }
-    
+
     &-line {
       position: absolute;
       bottom: 0;
-      transition: all .3s linear;
+      transition: all 0.3s linear;
     }
-    
+
     &-pills {
       position: absolute;
       top: 0;
-      transition: all .3s linear;
+      transition: all 0.3s linear;
       z-index: 9;
     }
   }

@@ -1,49 +1,22 @@
 <template>
   <view>
-    <!-- <view class="mb">
+    <view class="mb">
       <view class="title">常规用法：</view>
-      <view style="position: fixed; top: 50px; left: 0; width: 100%;">
-        <v-tabs v-model="current" :tabs="tabs" @change="changeTab" height="50px" bg-color="#f6f6f6"></v-tabs>
-      </view>
-    </view> -->
-    <!-- <view class="mb">
+      <v-tabs v-model="current" :tabs="tabs" @change="changeTab"></v-tabs>
+    </view>
+    <view class="mb">
       <view class="title">无下划线、无胶囊：</view>
-      <v-tabs
-        v-model="current"
-        :tabs="tabs"
-        :bold="true"
-        line-height="0"
-        line-radius="0"
-        @change="changeTab"
-      ></v-tabs>
-    </view> -->
+      <v-tabs v-model="current" :tabs="tabs" :bold="true" line-height="0" line-radius="0" @change="changeTab"></v-tabs>
+    </view>
     <view class="mb">
       <view class="title">键值、平铺用法：</view>
-      <v-tabs
-        v-model="activeTab"
-        :scroll="false"
-        :bold="true"
-        :tabs="tabs1"
-        pills
-        line-height="0"
-        field="name"
-        bg-color="#f6f6f6"
-        active-color="#fff"
-      ></v-tabs>
+      <v-tabs v-model="activeTab" :scroll="false" :bold="true" :tabs="tabs1" field="name"></v-tabs>
     </view>
-   <!-- <view class="mb">
-      <view class="title">胶囊用法：</view>
-      <v-tabs
-        v-model="current"
-        :tabs="tabs"
-        :pills="true"
-        :bold="true"
-        line-height="0"
-        activeColor="#fff"
-        @change="changeTab"
-      ></v-tabs>
-    </view> -->
-    <!-- <view class="mb">
+    <view class="mb">
+      <view class="title">胶囊用法、背景、padding：</view>
+      <v-tabs v-model="current" padding="10px 0" pills-border-radius="60rpx" bg-color="#f6f6f6" :tabs="tabs" :pills="true" :bold="true" line-height="0" activeColor="#fff" @change="changeTab"></v-tabs>
+    </view>
+    <view class="mb">
       <view class="title">完整参数用法：</view>
       <v-tabs
         v-model="current"
@@ -62,29 +35,17 @@
         pillsColor="#2979ff"
         pillsBorderRadius="10rpx"
       ></v-tabs>
-    </view> -->
-    
-    <view v-for="i in 100" :key="i">{{ `index - ${i}` }}</view>
+    </view>
   </view>
 </template>
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       current: 3,
       activeTab: 1,
-      tabs: [
-        '军事',
-        '国内',
-        '新闻新闻',
-        '军事',
-        '国内',
-        '新闻',
-        '军事',
-        '国内',
-        '新闻'
-      ],
+      tabs: ['军事', '国内', '新闻新闻', '军事', '国内', '新闻', '军事', '国内', '新闻'],
       tabs1: [
         {
           name: '全部',
@@ -106,7 +67,7 @@ export default {
     }
   },
   methods: {
-    changeTab(index) {
+    changeTab (index) {
       console.log('当前 index :' + index)
     }
   }
