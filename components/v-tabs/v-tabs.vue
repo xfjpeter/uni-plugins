@@ -1,5 +1,7 @@
 <template>
-  <view :id="elId" class="v-tabs">
+  <view :id="elId" class="v-tabs" :style="{
+    background: bgColor
+  }">
     <scroll-view :scroll-x="scroll" :scroll-left="scroll ? scrollLeft : 0" :scroll-with-animation="scroll">
       <view class="v-tabs__container" :style="{
         display: scroll ? 'inline-flex' : 'flex',
@@ -45,6 +47,7 @@
  * v-tabs
  * @property {Number} value 选中的下标
  * @property {Array} tabs tabs 列表
+ * @property {String} bgColor = '#fff' 背景颜色 
  * @property {String} color = '#333' 默认颜色
  * @property {String} activeColor = '#2979ff' 选中文字颜色
  * @property {String} fontSize = '28rpx' 默认文字大小 
@@ -75,6 +78,10 @@ export default {
         return []
       }
     },
+    bgColor: {
+      type: String,
+      default: '#fff'
+    },
     color: {
       type: String,
       default: '#333'
@@ -101,7 +108,7 @@ export default {
     },
     height: {
       type: String,
-      default: '60rpx'
+      default: '80rpx'
     },
     lineColor: {
       type:String,
@@ -231,6 +238,9 @@ export default {
 
 <style lang="scss" scoped>
 .v-tabs {
+  width: 100%;
+  overflow: hidden;
+  
   &__container {
     position: relative;
     display: inline-flex;

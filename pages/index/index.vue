@@ -1,10 +1,12 @@
 <template>
   <view>
-    <view class="mb">
+    <!-- <view class="mb">
       <view class="title">常规用法：</view>
-      <v-tabs v-model="current" :tabs="tabs" @change="changeTab"></v-tabs>
-    </view>
-    <view class="mb">
+      <view style="position: fixed; top: 50px; left: 0; width: 100%;">
+        <v-tabs v-model="current" :tabs="tabs" @change="changeTab" height="50px" bg-color="#f6f6f6"></v-tabs>
+      </view>
+    </view> -->
+    <!-- <view class="mb">
       <view class="title">无下划线、无胶囊：</view>
       <v-tabs
         v-model="current"
@@ -14,7 +16,7 @@
         line-radius="0"
         @change="changeTab"
       ></v-tabs>
-    </view>
+    </view> -->
     <view class="mb">
       <view class="title">键值、平铺用法：</view>
       <v-tabs
@@ -22,10 +24,14 @@
         :scroll="false"
         :bold="true"
         :tabs="tabs1"
+        pills
+        line-height="0"
         field="name"
+        bg-color="#f6f6f6"
+        active-color="#fff"
       ></v-tabs>
     </view>
-    <view class="mb">
+   <!-- <view class="mb">
       <view class="title">胶囊用法：</view>
       <v-tabs
         v-model="current"
@@ -36,8 +42,8 @@
         activeColor="#fff"
         @change="changeTab"
       ></v-tabs>
-    </view>
-    <view class="mb">
+    </view> -->
+    <!-- <view class="mb">
       <view class="title">完整参数用法：</view>
       <v-tabs
         v-model="current"
@@ -56,7 +62,9 @@
         pillsColor="#2979ff"
         pillsBorderRadius="10rpx"
       ></v-tabs>
-    </view>
+    </view> -->
+    
+    <view v-for="i in 100" :key="i">{{ `index - ${i}` }}</view>
   </view>
 </template>
 
@@ -75,33 +83,33 @@ export default {
         '新闻',
         '军事',
         '国内',
-        '新闻',
+        '新闻'
       ],
       tabs1: [
         {
           name: '全部',
-          value: 1,
+          value: 1
         },
         {
           name: '待支付',
-          value: 2,
+          value: 2
         },
         {
           name: '进行中',
-          value: 3,
+          value: 3
         },
         {
           name: '已完成',
-          value: 4,
-        },
-      ],
+          value: 4
+        }
+      ]
     }
   },
   methods: {
     changeTab(index) {
       console.log('当前 index :' + index)
-    },
-  },
+    }
+  }
 }
 </script>
 

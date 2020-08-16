@@ -126,6 +126,7 @@ data() {
 |    pillsColor     | String  | '#2979ff' |         胶囊背景颜色(rpx 或 px)          |
 | pillsBorderRadius | String  |  '10rpx'  |         胶囊圆角宽度(rpx 或 px)          |
 |       field       | String  |    ''     | 如果 tabs 子项是对象，输入需要展示的键名 |
+|      bgColor      | String  |  '#fff'   |    背景色，支持 linear-gradient 渐变     |
 
 ### 2、事件说明
 
@@ -134,6 +135,11 @@ data() {
 | change | index | 改变选中项触发, index 选中项的下标 |
 
 ## 更新日志
+
+### 2020-08-16
+
+1. 修改默认高度为 `80rpx`
+2. 新增属性 `bgColor`，可设置背景颜色，默认 `#fff`
 
 ### 2020-08-13
 
