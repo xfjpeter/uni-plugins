@@ -185,13 +185,15 @@ export default {
     },
     // 切换事件
     change (index) {
-      this.current = index
-
-      this.$nextTick(() => {
-        this.getTabItemWidth()
-      })
-
-      this.$emit('change', index)
+      if (this.current !== index) {
+        this.current = index
+        
+        this.$nextTick(() => {
+          this.getTabItemWidth()
+        })
+        
+        this.$emit('change', index)
+      }
     },
     // 获取左移动位置
     getTabItemWidth () {
@@ -244,6 +246,7 @@ export default {
 <style lang="scss" scoped>
 .v-tabs {
   width: 100%;
+  box-sizing: border-box;
   overflow: hidden;
 
   &__container {

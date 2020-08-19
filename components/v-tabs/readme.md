@@ -117,7 +117,7 @@ data() {
 |     fontSize      | String  |  '28rpx'  |         默认文字大小(rpx 或 px)          |
 |       bold        | Boolean |   true    |              是否加粗选中项              |
 |      scroll       | Boolean |   true    |      是否显示滚动条，平铺设置 false      |
-|      height       | String  |  '60rpx'  |           tab 高度(rpx 或 px)            |
+|      height       | String  |  '70rpx'  |           tab 高度(rpx 或 px)            |
 |    lineHeight     | String  |  '10rpx'  |           滑块高度(rpx 或 px)            |
 |     lineColor     | String  | '#2979ff' |                滑块的颜色                |
 |     lineScale     | Number  |    0.5    |              滑块宽度缩放值              |
