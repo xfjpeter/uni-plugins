@@ -188,16 +188,15 @@ export default {
       if (this.current !== index) {
         this.current = index
         
-        this.$nextTick(() => {
-          this.getTabItemWidth()
-        })
-        
         this.$emit('change', index)
       }
     },
     // 获取左移动位置
     getTabItemWidth () {
-      let query = uni.createSelectorQuery().in(this)
+      let query = uni.createSelectorQuery()
+      // #ifndef MP-ALIPAY
+        .in(this)
+      // #endif
       // 获取容器的宽度
       query.select(`#${this.elId}`).boundingClientRect((data) => {
         if (!this.containerWidth) {
@@ -206,15 +205,20 @@ export default {
       }).exec()
       // 获取所有的 tab-item 的宽度
       query.selectAll('.v-tabs__container-item').boundingClientRect((data) => {
+        if (!data) {
+          return
+        }
         let lineLeft = 0
         let currentWidth = 0
-        for (let i = 0; i < data.length; i++) {
-          if (i < this.current) {
-            lineLeft += data[i].width
-          } else if (i == this.current) {
-            currentWidth = data[i].width
-          } else {
-            break
+        if (data) {
+          for (let i = 0; i < data.length; i++) {
+            if (i < this.current) {
+              lineLeft += data[i].width
+            } else if (i == this.current) {
+              currentWidth = data[i].width
+            } else {
+              break
+            }
           }
         }
         // 当前滑块的宽度

@@ -8,10 +8,10 @@
       <view class="title">无下划线、无胶囊：</view>
       <v-tabs v-model="current" :tabs="tabs" :bold="true" line-height="0" line-radius="0" @change="changeTab"></v-tabs>
     </view>
-    <view class="mb">
+    <!-- <view class="mb">
       <view class="title">键值、平铺用法：</view>
       <v-tabs v-model="activeTab" :scroll="false" :bold="true" :tabs="tabs1" field="name"></v-tabs>
-    </view>
+    </view> -->
     <view class="mb">
       <view class="title">胶囊用法、背景、padding：</view>
       <v-tabs v-model="current" padding="10px 0" pills-border-radius="60rpx" bg-color="#f6f6f6" :tabs="tabs" :pills="true" :bold="true" line-height="0" activeColor="#fff" @change="changeTab"></v-tabs>
