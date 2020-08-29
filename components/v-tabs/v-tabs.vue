@@ -169,6 +169,11 @@ export default {
     },
     current (newVal) {
       this.$emit('input', newVal)
+    },
+    tabs(newVal) {
+      this.$nextTick(() => {
+        this.getTabItemWidth()
+      })
     }
   },
   methods: {
@@ -193,6 +198,7 @@ export default {
     },
     // 获取左移动位置
     getTabItemWidth () {
+      console.log('exec')
       let query = uni.createSelectorQuery()
       // #ifndef MP-ALIPAY
         .in(this)

@@ -18,6 +18,12 @@
         "navigationBarTitleText": "navbar 示例",
         "navigationStyle": "custom"
       }
+    }, {
+      "path": "pages/tabs/order",
+      "style": {
+        "navigationBarTitleText": "tabs+swiper组合",
+        "navigationBarBackgroundColor": "white"
+      }
     }
   ],
   "globalStyle": {

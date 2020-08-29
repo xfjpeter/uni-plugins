@@ -3,7 +3,7 @@
     <v-navbar title="测试标题测试标题测试标题测试标题测试标题测试标题测试标题" @on-navbar-left="clickLeft" @on-navbar-center="clickCenter" @on-navbar-right="clickRight">
     </v-navbar>
 
-    <view v-for="i in 100">
+    <view v-for="i in 100" :key="i">
       {{ `index - ${i}` }}
     </view>
   </view>
@@ -29,7 +29,7 @@ export default {
         icon: 'none'
       })
     }
-  },
+  }
 }
 </script>
 

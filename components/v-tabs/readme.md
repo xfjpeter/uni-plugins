@@ -137,6 +137,11 @@ data() {
 
 ## 更新日志
 
+### 2020-08-29
+
+1. 优化异步改变 `tabs` 后，下划线不初始化问题
+2. `github` 地址上有图 2 的源码，需要的自行下载，页面路径：`pages/tabs/order.vue`
+
 ### 2020-08-20
 
 1. 优化 `节点查询` 和 `选中渲染`
@@ -160,4 +165,5 @@ data() {
 
 ## 预览
 
-![v-tabs 2.0.gif](https://tva1.sinaimg.cn/large/007S8ZIlgy1ghsv40mj76g30ai0i2tsd.gif)
+![v-tabs 2.0.1.gif](https://tva1.sinaimg.cn/large/007S8ZIlgy1ghsv40mj76g30ai0i2tsd.gif)
+![v-tabs 2.0.2.gif](https://img-cdn-aliyun.dcloud.net.cn/stream/plugin_screens/42f3a920-a674-11ea-8a24-ffee00625e2e_1.png?v=1597912963)
