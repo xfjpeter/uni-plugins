@@ -21,8 +21,7 @@
     }, {
       "path": "pages/tabs/order",
       "style": {
-        "navigationBarTitleText": "tabs+swiper组合",
-        "navigationBarBackgroundColor": "white"
+        "navigationBarTitleText": "tabs+swiper组合"
       }
     }
   ],

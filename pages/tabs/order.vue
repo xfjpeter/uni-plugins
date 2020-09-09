@@ -1,7 +1,7 @@
 <template>
   <view class="container">
     <view class="tabs">
-      <v-tabs :tabs="tabs" v-model="current" :scroll="false" line-color="#C7B099" active-color="#C7B099"></v-tabs>
+      <v-tabs :tabs="tabs" v-model="current" :scroll="false" line-color="#C7B099" active-color="#C7B099" style="width: 100%;"></v-tabs>
     </view>
     
     <!-- 订单列表 -->

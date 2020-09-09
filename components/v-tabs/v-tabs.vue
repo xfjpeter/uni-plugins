@@ -198,14 +198,13 @@ export default {
     },
     // 获取左移动位置
     getTabItemWidth () {
-      console.log('exec')
       let query = uni.createSelectorQuery()
       // #ifndef MP-ALIPAY
         .in(this)
       // #endif
       // 获取容器的宽度
       query.select(`#${this.elId}`).boundingClientRect((data) => {
-        if (!this.containerWidth) {
+        if (!this.containerWidth && data) {
           this.containerWidth = data.width
         }
       }).exec()
