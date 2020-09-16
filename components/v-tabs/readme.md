@@ -19,24 +19,14 @@ export default {
   data() {
     return {
       current: 0,
-      tabs: [
-        '军事',
-        '国内',
-        '新闻新闻',
-        '军事',
-        '国内',
-        '新闻',
-        '军事',
-        '国内',
-        '新闻',
-      ],
+      tabs: ['军事', '国内', '新闻新闻', '军事', '国内', '新闻', '军事', '国内', '新闻']
     }
   },
   methods: {
     changeTab(index) {
       console.log('当前选中的项：' + index)
-    },
-  },
+    }
+  }
 }
 ```
 
@@ -45,11 +35,7 @@ export default {
 - 视图文件
 
 ```html
-<v-tabs
-  v-model="activeTab"
-  :scroll="false"
-  :tabs="['全部', '进行中', '已完成']"
-></v-tabs>
+<v-tabs v-model="activeTab" :scroll="false" :tabs="['全部', '进行中', '已完成']"></v-tabs>
 ```
 
 - 脚本文件
@@ -58,9 +44,9 @@ export default {
 export default {
   data() {
     return {
-      activeTab: 0,
+      activeTab: 0
     }
-  },
+  }
 }
 ```
 
@@ -69,14 +55,7 @@ export default {
 - 视图文件
 
 ```html
-<v-tabs
-  v-model="current"
-  :tabs="tabs"
-  :pills="true"
-  line-height="0"
-  activeColor="#fff"
-  @change="changeTab"
-></v-tabs>
+<v-tabs v-model="current" :tabs="tabs" :pills="true" line-height="0" activeColor="#fff" @change="changeTab"></v-tabs>
 ```
 
 - 脚本文件
@@ -128,6 +107,7 @@ data() {
 |       field       | String  |    ''     | 如果 tabs 子项是对象，输入需要展示的键名 |
 |      bgColor      | String  |  '#fff'   |    背景色，支持 linear-gradient 渐变     |
 |      padding      | String  |    '0'    |          整个 tab padding 属性           |
+|       fixed       | Boolean |   false   |              是否固定在顶部              |
 
 ### 2、事件说明
 
@@ -137,10 +117,24 @@ data() {
 
 ## 更新日志
 
+### 2020-09-16
+
+1. 新增 `fixed` 属性，是否固定在顶部，示例地址：`pages/tabs/tabs-static`
+2. 优化之前的页面结构
+
+**注意：**
+
+1. 使用 `padding` 属性的时候，尽量不要左右边距，会导致下划线位置不对
+2. 如果不绑定 `v-model` 会导致 `change` 事件改变的时候，下划线不跟随问题
+
+### 2020-09-09
+
+1. 修复 `width` 错误，dom 加载的时候没有及时获取到 `data` 属性导致的。
+
 ### 2020-08-29
 
 1. 优化异步改变 `tabs` 后，下划线不初始化问题
-2. `github` 地址上有图 2 的源码，需要的自行下载，页面路径：`pages/tabs/order.vue`
+2. `github` 地址上有图 2 的源码，需要的自行下载，页面路径：`pages/tabs/order`
 
 ### 2020-08-20
 
