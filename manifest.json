@@ -1,28 +1,28 @@
 {
-    "name" : "v-tabs",
-    "appid" : "__UNI__211C00D",
-    "description" : "",
-    "versionName" : "2.0.6",
-    "versionCode" : "100",
-    "transformPx" : false,
+    "name": "v-tabs",
+    "appid": "__UNI__211C00D",
+    "description": "",
+    "versionName": "2.0.7",
+    "versionCode": "100",
+    "transformPx": false,
     /* 5+App特有相关 */
-    "app-plus" : {
-        "usingComponents" : true,
-        "nvueCompiler" : "uni-app",
-        "compilerVersion" : 3,
-        "splashscreen" : {
-            "alwaysShowBeforeRender" : true,
-            "waiting" : true,
-            "autoclose" : true,
-            "delay" : 0
+    "app-plus": {
+        "usingComponents": true,
+        "nvueCompiler": "uni-app",
+        "compilerVersion": 3,
+        "splashscreen": {
+            "alwaysShowBeforeRender": true,
+            "waiting": true,
+            "autoclose": true,
+            "delay": 0
         },
         /* 模块配置 */
-        "modules" : {},
+        "modules": {},
         /* 应用发布信息 */
-        "distribute" : {
+        "distribute": {
             /* android打包配置 */
-            "android" : {
-                "permissions" : [
+            "android": {
+                "permissions": [
                     "<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>",
                     "<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>",
                     "<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>",
@@ -48,31 +48,31 @@
                 ]
             },
             /* ios打包配置 */
-            "ios" : {},
+            "ios": {},
             /* SDK配置 */
-            "sdkConfigs" : {}
+            "sdkConfigs": {}
         }
     },
     /* 快应用特有相关 */
-    "quickapp" : {},
+    "quickapp": {},
     /* 小程序特有相关 */
-    "mp-weixin" : {
-        "appid" : "wx0d01121ebb6224f7",
-        "setting" : {
-            "urlCheck" : false
+    "mp-weixin": {
+        "appid": "wx0d01121ebb6224f7",
+        "setting": {
+            "urlCheck": false
         },
-        "usingComponents" : true
+        "usingComponents": true
     },
-    "mp-alipay" : {
-        "usingComponents" : true
+    "mp-alipay": {
+        "usingComponents": true
     },
-    "mp-baidu" : {
-        "usingComponents" : true
+    "mp-baidu": {
+        "usingComponents": true
     },
-    "mp-toutiao" : {
-        "usingComponents" : true
+    "mp-toutiao": {
+        "usingComponents": true
     },
-    "uniStatistics" : {
-        "enable" : false
+    "uniStatistics": {
+        "enable": false
     }
 }

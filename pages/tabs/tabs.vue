@@ -2,7 +2,7 @@
   <view>
     <view class="mb">
       <view class="title">常规用法：</view>
-      <v-tabs v-model="current" :tabs="tabs" @change="changeTab"></v-tabs>
+      <v-tabs v-model="current" :tabs="tabs2" @change="changeTab"></v-tabs>
     </view>
     <view class="mb">
       <view class="title">无下划线、无胶囊：</view>
@@ -43,9 +43,10 @@
 export default {
   data () {
     return {
-      current: 3,
+      current: 0,
       activeTab: 1,
       tabs: ['军事', '国内', '新闻新闻', '军事', '国内', '新闻', '军事', '国内', '新闻'],
+      tabs2: ['全部', '待付款', '待消费', '已完成', '已评价', '已过期', '已退款'],
       tabs1: [
         {
           name: '全部',
