@@ -289,7 +289,7 @@ export default {
   overflow: hidden;
 
   &__container {
-    width: 100%;
+    min-width: 100%;
     position: relative;
     display: inline-flex;
     align-items: center;
