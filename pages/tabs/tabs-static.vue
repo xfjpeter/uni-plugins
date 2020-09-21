@@ -1,7 +1,7 @@
 <template>
   <view class="container">
-    <v-tabs :tabs="tabs" @change="changeTab" :scroll="false" fixed v-model="current" bg-color="#eee" padding="10rpx 0"></v-tabs>
-    
+    <v-tabs :tabs="tabs" @change="changeTab" fixed v-model="current" bg-color="#eee" padding="20rpx 0"></v-tabs>
+
     <button @click="clickMe">模拟搜索</button>
 
     <view class="list">
@@ -17,7 +17,7 @@ export default {
   data() {
     return {
       current: 0,
-      tabs: ['全部', '已完成']
+      tabs: ['全部', '待付款', '待发货', '已收货', '退款中', '已评价', '已完成']
     }
   },
   methods: {

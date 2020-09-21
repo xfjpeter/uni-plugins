@@ -9,12 +9,24 @@
       <v-tabs v-model="current" :tabs="tabs" :bold="true" line-height="0" line-radius="0" @change="changeTab"></v-tabs>
     </view>
     <!-- <view class="mb">
+      
       <view class="title">键值、平铺用法：</view>
       <v-tabs v-model="activeTab" :scroll="false" :bold="true" :tabs="tabs1" field="name"></v-tabs>
     </view> -->
     <view class="mb">
       <view class="title">胶囊用法、背景、padding：</view>
-      <v-tabs v-model="current" padding="10px 0" pills-border-radius="60rpx" bg-color="#f6f6f6" :tabs="tabs" :pills="true" :bold="true" line-height="0" activeColor="#fff" @change="changeTab"></v-tabs>
+      <v-tabs
+        v-model="current"
+        padding="10px 0"
+        pills-border-radius="60rpx"
+        bg-color="#f6f6f6"
+        :tabs="tabs"
+        :pills="true"
+        :bold="true"
+        line-height="0"
+        activeColor="#fff"
+        @change="changeTab"
+      ></v-tabs>
     </view>
     <view class="mb">
       <view class="title">完整参数用法：</view>
@@ -41,7 +53,7 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       current: 0,
       activeTab: 1,
@@ -68,7 +80,7 @@ export default {
     }
   },
   methods: {
-    changeTab (index) {
+    changeTab(index) {
       console.log('当前 index :' + index)
     }
   }

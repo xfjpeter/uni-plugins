@@ -1,14 +1,18 @@
 <template>
   <view :id="elId" class="v-tabs">
-    <scroll-view :scroll-x="scroll" :scroll-left="scroll ? scrollLeft : 0" :scroll-with-animation="scroll">
+    <scroll-view
+      :scroll-x="scroll"
+      :scroll-left="scroll ? scrollLeft : 0"
+      :scroll-with-animation="scroll"
+      :style="{ position: fixed ? 'fixed' : 'relative', zIndex: 1993 }"
+    >
       <view
         class="v-tabs__container"
         :style="{
-          position: fixed ? 'fixed' : 'relative',
           display: scroll ? 'inline-flex' : 'flex',
           whiteSpace: scroll ? 'nowrap' : 'normal',
-          height,
           background: bgColor,
+          height,
           padding
         }"
       >
@@ -20,7 +24,9 @@
             color: current == i ? activeColor : color,
             fontSize: current == i ? fontSize : fontSize,
             fontWeight: bold && current == i ? 'bold' : '',
-            justifyContent: !scroll ? 'center' : ''
+            justifyContent: !scroll ? 'center' : '',
+            flex: scroll ? '' : 1,
+            padding: paddingItem
           }"
           @click="change(i)"
         >
@@ -83,6 +89,7 @@
  * @property {String} pillsBorderRadius = '10rpx' 胶囊圆角大小
  * @property {String} field 如果是对象，显示的键名
  * @property {Boolean} fixed = [true | false] 是否固定
+ * @property {String} paddingItem = '0 22rpx' 选项的边距
  *
  * @event {Function(current)} change 改变标签触发
  */
@@ -169,6 +176,10 @@ export default {
     fixed: {
       type: Boolean,
       default: false
+    },
+    paddingItem: {
+      type: String,
+      default: '0 22rpx'
     }
   },
   data() {
@@ -295,7 +306,6 @@ export default {
     align-items: center;
     white-space: nowrap;
     overflow: hidden;
-    z-index: 1993;
 
     &-item {
       display: flex;
@@ -303,8 +313,7 @@ export default {
       height: 100%;
       position: relative;
       z-index: 10;
-      flex: 1;
-      padding: 0 11px;
+      // padding: 0 11px;
       transition: all 0.3s;
       white-space: nowrap;
     }
@@ -323,7 +332,7 @@ export default {
   }
 }
 
-/deep/ ::-webkit-scrollbar {
+/* /deep/ ::-webkit-scrollbar {
   display: none;
-}
+} */
 </style>

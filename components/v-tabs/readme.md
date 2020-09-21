@@ -88,26 +88,27 @@ data() {
 
 ### 1、属性说明
 
-|       参数        |  类型   |  默认值   |                   说明                   |
-| :---------------: | :-----: | :-------: | :--------------------------------------: |
-|       value       | Number  |     0     |            必传(双向绑定的值)            |
-|       color       | String  |  '#333'   |               默认文字颜色               |
-|    activeColor    | String  | '#2979ff' |              选中文字的颜色              |
-|     fontSize      | String  |  '28rpx'  |         默认文字大小(rpx 或 px)          |
-|       bold        | Boolean |   true    |              是否加粗选中项              |
-|      scroll       | Boolean |   true    |      是否显示滚动条，平铺设置 false      |
-|      height       | String  |  '70rpx'  |           tab 高度(rpx 或 px)            |
-|    lineHeight     | String  |  '10rpx'  |           滑块高度(rpx 或 px)            |
-|     lineColor     | String  | '#2979ff' |                滑块的颜色                |
-|     lineScale     | Number  |    0.5    |              滑块宽度缩放值              |
-|    lineRadius     | String  |  '10rpx'  |         滑块圆角宽度(rpx 或 px)          |
-|       pills       | Boolean |   false   |               是否开启胶囊               |
-|    pillsColor     | String  | '#2979ff' |         胶囊背景颜色(rpx 或 px)          |
-| pillsBorderRadius | String  |  '10rpx'  |         胶囊圆角宽度(rpx 或 px)          |
-|       field       | String  |    ''     | 如果 tabs 子项是对象，输入需要展示的键名 |
-|      bgColor      | String  |  '#fff'   |    背景色，支持 linear-gradient 渐变     |
-|      padding      | String  |    '0'    |          整个 tab padding 属性           |
-|       fixed       | Boolean |   false   |              是否固定在顶部              |
+|       参数        |  类型   |  默认值   |                    说明                    |
+| :---------------: | :-----: | :-------: | :----------------------------------------: |
+|       value       | Number  |     0     |             必传(双向绑定的值)             |
+|       color       | String  |  '#333'   |                默认文字颜色                |
+|    activeColor    | String  | '#2979ff' |               选中文字的颜色               |
+|     fontSize      | String  |  '28rpx'  |          默认文字大小(rpx 或 px)           |
+|       bold        | Boolean |   true    |               是否加粗选中项               |
+|      scroll       | Boolean |   true    |       是否显示滚动条，平铺设置 false       |
+|      height       | String  |  '70rpx'  |            tab 高度(rpx 或 px)             |
+|    lineHeight     | String  |  '10rpx'  |            滑块高度(rpx 或 px)             |
+|     lineColor     | String  | '#2979ff' |                 滑块的颜色                 |
+|     lineScale     | Number  |    0.5    |               滑块宽度缩放值               |
+|    lineRadius     | String  |  '10rpx'  |          滑块圆角宽度(rpx 或 px)           |
+|       pills       | Boolean |   false   |                是否开启胶囊                |
+|    pillsColor     | String  | '#2979ff' |          胶囊背景颜色(rpx 或 px)           |
+| pillsBorderRadius | String  |  '10rpx'  |          胶囊圆角宽度(rpx 或 px)           |
+|       field       | String  |    ''     |  如果 tabs 子项是对象，输入需要展示的键名  |
+|      bgColor      | String  |  '#fff'   |     背景色，支持 linear-gradient 渐变      |
+|      padding      | String  |    '0'    |           整个 tab padding 属性            |
+|       fixed       | Boolean |   false   |               是否固定在顶部               |
+|    paddingItem    | String  | '0 22rpx' | 选项的边距（设置上下不生效，需要设置高度） |
 
 ### 2、事件说明
 
@@ -116,6 +117,15 @@ data() {
 | change | index | 改变选中项触发, index 选中项的下标 |
 
 ## 更新日志
+
+### 2020-09-21
+
+1. 修复添加 `fixed` 属性后，滚动条无效
+2. 修复选项很少的情况下，下划线计算计算错误
+3. 新增 `paddingItem` 属性，设置选项左右边距（上下边距需要设置 `height` 属性，或者设置 `padding` 属性）
+
+**写在最后：**
+欢迎各位老铁反馈 bug ，本人后端 PHP 一枚，只是应为感兴趣前端，自己琢磨，自己搞。如果你在使用的过程中有什么不合理，需要优化的，都可以在下面评论（或加我 QQ: 1207791534），本人看见后回复、修正，感谢。
 
 ### 2020-09-17
 
