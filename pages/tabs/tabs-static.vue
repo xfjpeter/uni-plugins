@@ -5,9 +5,11 @@
     <button @click="clickMe">模拟搜索</button>
 
     <view class="list">
-      <view v-for="i in 100" :key="i">
-        {{ i }}
-      </view>
+      <block v-if="current == index" v-for="(item, index) in tabs" :key="index">
+        <view v-for="i in 100" :key="i">
+          {{ index }} - {{ i }}
+        </view>
+       </block>
     </view>
   </view>
 </template>

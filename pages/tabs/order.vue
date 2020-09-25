@@ -8,43 +8,45 @@
         line-color="#C7B099"
         active-color="#C7B099"
         style="width: 100%"
+        ref="tabs"
+        @change="changeTab"
       ></v-tabs>
     </view>
 
     <!-- 订单列表 -->
     <!-- 订单列表 -->
     <view class="container-tabs__list">
-      <swiper class="container-tabs__swiper" :current="current" @change="changeSwiper">
-        <swiper-item class="swiper-item" v-for="(item, index) in tabs" :key="index">
-          <scroll-view scroll-y style="height: 100%">
+      <swiper class="container-tabs__swiper" :current="swiperCurrent" @animationfinish="animationFinished">
+        <swiper-item class="swiper-item" v-for="(outItem, outIndex) in list" :key="outIndex">
+          <scroll-view scroll-y style="height: 100%" @scrolltolower="getData">
             <!-- 循环订单列表 -->
-            <view class="v-order-item" @click="click" v-for="i in 10" :key="i">
+            <view class="v-order-item" @click="click" v-for="(ov, oi) in list[outIndex].data" :key="oi">
               <view
                 class="v-order-item__box"
-                :class="{ 'u-border-top': index > 0 }"
-                v-for="(item, index) in rowData"
-                :key="index"
+                :class="{ 'u-border-top': outIndex > 0 }"
+                v-for="(innerItem, innerIndex) in ov"
+                :key="innerIndex"
               >
                 <view class="v-order-item__box-thumbnail">
-                  <image :src="item.src" />
+                  <image :src="innerItem.src" />
                 </view>
 
                 <view class="v-order-item__box-info">
                   <view class="box-info__top">
                     <!-- 标题和数量 -->
                     <view class="box-info__title">
-                      <text class="ellipsis">{{ item.title }}</text>
-                      <text>X{{ item.count }}</text>
+                      <text class="ellipsis">{{ innerItem.title }}</text>
+                      <text>X{{ innerItem.count }}</text>
                     </view>
-                    <view class="box-info__attr">{{ item.attr }}</view>
+                    <view class="box-info__attr">{{ innerItem.attr }}</view>
                   </view>
 
                   <view class="box-info__bottom">
                     <view class="box-info__total_amount">
                       订单总金额：
-                      <text>¥{{ item.price }}元</text>
+                      <text>¥{{ innerItem.price }}元</text>
                     </view>
-                    <view class="box-info__status">{{ item.status }}</view>
+                    <view class="box-info__status">{{ innerItem.status }}</view>
                   </view>
                 </view>
               </view>
@@ -62,8 +64,16 @@ export default {
   data() {
     return {
       current: 0,
+      swiperCurrent: 0,
       tabs: [],
-      rowData: [],
+      list: [
+        // 这个的数量一定要和 tabs 的数量对齐
+        { loadmore: 'loadmore', page: 1, data: [] },
+        { loadmore: 'loadmore', page: 1, data: [] },
+        { loadmore: 'loadmore', page: 1, data: [] },
+        { loadmore: 'loadmore', page: 1, data: [] },
+        { loadmore: 'loadmore', page: 1, data: [] }
+      ],
       mockRowData: [
         {
           title: '商品名称',
@@ -72,53 +82,51 @@ export default {
           price: 800,
           src: 'https://tva1.sinaimg.cn/large/007S8ZIlgy1gi1y867us6j30a00a0gn7.jpg',
           status: '已付款'
-        },
-        {
-          title: '商品名称',
-          count: 10,
-          attr: '雅慧道系列 产品名称 60g',
-          price: 800,
-          src: 'https://tva1.sinaimg.cn/large/007S8ZIlgy1gi1y867us6j30a00a0gn7.jpg',
-          status: '待付款'
         }
       ]
     }
   },
   methods: {
-    changeSwiper(e) {
-      this.loadData()
-
+    animationFinished(e) {
       this.current = e.detail.current
+      this.swiperCurrent = e.detail.current
+
+      // 填充数据
+      this.fillData()
+    },
+    changeTab(index) {
+      this.swiperCurrent = index
+
+      // 填充数据
+      this.fillData()
+    },
+    fillData() {
+      if (this.list[this.current].data.length <= 0) {
+        // 当没有数据的时候才请求
+        this.getData()
+      }
+    },
+    getData() {
+      let mockData = []
+      // 每页模拟 10 调数据
+      for (let i = 0; i < 10; i++) {
+        mockData.push(this.mockRowData)
+      }
+      this.$set(this.list[this.current], 'data', [...this.list[this.current].data, ...mockData])
     },
     click() {
       uni.showToast({
         title: '我被点击了',
         icon: 'none'
       })
-    },
-    loadData() {
-      this.rowData = []
-      uni.showLoading({
-        title: '数据加载中...',
-        mask: false
-      })
-      // 模拟请求数据
-      setTimeout(() => {
-        this.rowData = this.mockRowData
-        uni.hideLoading()
-      }, 500)
     }
   },
   created() {
     // 模拟请求分类
-    uni.showLoading({
-      title: '请求中...',
-      mask: true
-    })
     setTimeout(() => {
       this.tabs = ['全部订单', '待付款', '待发货', '待收货', '已完成']
 
-      this.loadData()
+      this.fillData()
     }, 500)
   }
 }

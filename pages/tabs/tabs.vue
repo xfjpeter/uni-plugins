@@ -1,8 +1,8 @@
 <template>
-  <view>
+  <view class="container">
     <view class="mb">
       <view class="title">常规用法：</view>
-      <v-tabs v-model="current" :tabs="tabs2" @change="changeTab"></v-tabs>
+      <v-tabs v-model="current" :tabs="tabs3" @change="changeTab"></v-tabs>
     </view>
     <view class="mb">
       <view class="title">无下划线、无胶囊：</view>
@@ -57,6 +57,7 @@ export default {
     return {
       current: 0,
       activeTab: 1,
+      tabs3: ['选项一', '选项二'],
       tabs: ['军事', '国内', '新闻新闻', '军事', '国内', '新闻', '军事', '国内', '新闻'],
       tabs2: ['全部', '待付款', '待消费', '已完成', '已评价', '已过期', '已退款'],
       tabs1: [
@@ -88,6 +89,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.container {
+  padding: 30rpx;
+}
 .mb {
   margin-bottom: 60rpx;
 }

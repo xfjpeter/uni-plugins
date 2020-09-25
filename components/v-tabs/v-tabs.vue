@@ -1,6 +1,7 @@
 <template>
   <view :id="elId" class="v-tabs">
     <scroll-view
+      id="scrollContainer"
       :scroll-x="scroll"
       :scroll-left="scroll ? scrollLeft : 0"
       :scroll-with-animation="scroll"
@@ -240,7 +241,7 @@ export default {
       // #endif
       // 获取容器的宽度
       query
-        .select(`#${this.elId}`)
+        .select(`#scrollContainer`)
         .boundingClientRect((data) => {
           if (!this.containerWidth && data) {
             this.containerWidth = data.width
@@ -299,6 +300,10 @@ export default {
   box-sizing: border-box;
   overflow: hidden;
 
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
   &__container {
     min-width: 100%;
     position: relative;
@@ -331,8 +336,4 @@ export default {
     }
   }
 }
-
-/* /deep/ ::-webkit-scrollbar {
-  display: none;
-} */
 </style>
