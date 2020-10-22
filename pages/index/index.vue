@@ -1,10 +1,12 @@
 <template>
   <view class="">
     <view class="example">
+      <navigator url="../tabs/v-tabs-1">v-tabs 1.x</navigator>
       <navigator url="../tabs/tabs">v-tabs 基本示例</navigator>
       <navigator url="../tabs/order">tabs + swiper 订单展示</navigator>
       <navigator url="../tabs/tabs-static">tabs 固定在顶部</navigator>
       <navigator url="../navbar/navbar">navbar 示例</navigator>
+      <navigator url="../tabs/column">侧边 tabs</navigator>
     </view>
   </view>
 </template>

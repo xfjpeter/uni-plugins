@@ -71,6 +71,9 @@
 <script>
 /**
  * v-tabs
+ * @description 顶部 tab 栏，订单列表｜分类比较常用
+ * @tutorial https://ext.dcloud.net.cn/plugin?id=1971
+ * @version 2.0.9
  * @property {Number} value 选中的下标
  * @property {Array} tabs tabs 列表
  * @property {String} bgColor = '#fff' 背景颜色
