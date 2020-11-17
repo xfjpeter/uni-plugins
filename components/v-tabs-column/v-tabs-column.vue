@@ -127,7 +127,7 @@ export default {
   },
   data() {
     return {
-      current: 0,
+      current: this.value,
       scrollTop: 0,
       containerHeight: 0,
       items: [] // 缓存
