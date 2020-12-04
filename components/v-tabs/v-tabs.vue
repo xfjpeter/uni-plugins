@@ -195,7 +195,8 @@ export default {
       pillsLeft: 0, // 胶囊距离左侧的位置
       scrollLeft: 0, // 距离左边的位置
       containerWidth: 0, // 容器的宽度
-      current: 0 // 当前选中项
+      current: -1, // 当前选中项
+      items: [] // 所有的选项列表属性
     }
   },
   watch: {
@@ -242,49 +243,58 @@ export default {
         // #ifndef MP-ALIPAY
         .in(this)
       // #endif
-      // 获取容器的宽度
-      query
-        .select(`#scrollContainer`)
-        .boundingClientRect((data) => {
-          if (!this.containerWidth && data) {
-            this.containerWidth = data.width
-          }
-        })
-        .exec()
-      // 获取所有的 tab-item 的宽度
-      query
-        .selectAll('.v-tabs__container-item')
-        .boundingClientRect((data) => {
-          if (!data) {
-            return
-          }
-          let lineLeft = 0
-          let currentWidth = 0
-          if (data) {
-            for (let i = 0; i < data.length; i++) {
-              if (i < this.current) {
-                lineLeft += data[i].width
-              } else if (i == this.current) {
-                currentWidth = data[i].width
-              } else {
-                break
-              }
+      // 获取容器的宽度: 当容器的宽度不存在的时候获取
+      if (!this.containerWidth) {
+        query
+          .select(`#scrollContainer`)
+          .boundingClientRect((data) => {
+            if (data) {
+              this.containerWidth = data.width
             }
-          }
-          // 当前滑块的宽度
-          this.currentWidth = currentWidth
-          // 缩放后的滑块宽度
-          this.lineWidth = currentWidth * this.lineScale * 1
-          // 滑块作移动的位置
-          this.lineLeft = lineLeft + currentWidth / 2
-          // 胶囊距离左侧的位置
-          this.pillsLeft = lineLeft
-          // 计算滚动的距离左侧的位置
-          if (this.scroll) {
-            this.scrollLeft = this.lineLeft - this.containerWidth / 2
+          })
+          .exec()
+      }
+      // 第一次缓存节点的信息，不在去获取 dom 节点的数据
+      if (this.items.length <= 0) {
+        query
+          .selectAll('.v-tabs__container-item')
+          .boundingClientRect((data) => {
+            if (!data) {
+              return
+            }
+            this.items = data
+            this.calculatePosition()
+          })
+          .exec()
+      } else {
+        this.calculatePosition()
+      }
+    },
+    calculatePosition() {
+      const data = this.items
+      if (data.length <= 0) return
+      let lineLeft = 0
+      let currentWidth = 0
+      if (data) {
+        data.map((item, index) => {
+          if (index < this.current) {
+            lineLeft += item.width
           }
         })
-        .exec()
+        currentWidth = data[this.current].width
+      }
+      // 当前滑块的宽度
+      this.currentWidth = currentWidth
+      // 缩放后的滑块宽度
+      this.lineWidth = currentWidth * this.lineScale * 1
+      // 滑块作移动的位置
+      this.lineLeft = lineLeft + currentWidth / 2
+      // 胶囊距离左侧的位置
+      this.pillsLeft = lineLeft
+      // 计算滚动的距离左侧的位置
+      if (this.scroll) {
+        this.scrollLeft = this.lineLeft - this.containerWidth / 2
+      }
     }
   },
   mounted() {

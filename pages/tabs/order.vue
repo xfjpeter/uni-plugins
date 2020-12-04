@@ -109,7 +109,7 @@ export default {
     getData() {
       let mockData = []
       // 每页模拟 10 调数据
-      for (let i = 0; i < 10; i++) {
+      for (let i = 0; i < 100; i++) {
         mockData.push(this.mockRowData)
       }
       this.$set(this.list[this.current], 'data', [...this.list[this.current].data, ...mockData])

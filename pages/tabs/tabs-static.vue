@@ -6,10 +6,8 @@
 
     <view class="list">
       <block v-if="current == index" v-for="(item, index) in tabs" :key="index">
-        <view v-for="i in 100" :key="i">
-          {{ index }} - {{ i }}
-        </view>
-       </block>
+        <view v-for="i in 1000" :key="i">{{ index }} - {{ i }}</view>
+      </block>
     </view>
   </view>
 </template>
@@ -21,6 +19,14 @@ export default {
       current: 0,
       tabs: ['全部', '待付款', '待发货', '已收货', '退款中', '已评价', '已完成']
     }
+  },
+  onLoad() {
+    console.log('onload')
+    console.time('dom')
+  },
+  onReady() {
+    console.log('onReady')
+    console.timeEnd('dom')
   },
   methods: {
     clickMe() {
