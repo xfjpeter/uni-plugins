@@ -18,7 +18,7 @@
         }"
       >
         <view
-          class="v-tabs__container-item"
+          :class="['v-tabs__container-item', { disabled: !!v.disabled }]"
           v-for="(v, i) in tabs"
           :key="i"
           :style="{
@@ -35,7 +35,7 @@
         </view>
         <view
           v-if="!pills"
-          class="v-tabs__container-line"
+          :class="['v-tabs__container-line', { animation: lineAnimation }]"
           :style="{
             background: lineColor,
             width: lineWidth + 'px',
@@ -47,7 +47,7 @@
         ></view>
         <view
           v-else
-          class="v-tabs__container-pills"
+          :class="['v-tabs__container-pills', { animation: lineAnimation }]"
           :style="{
             background: pillsColor,
             borderRadius: pillsBorderRadius,
@@ -71,9 +71,6 @@
 <script>
 /**
  * v-tabs
- * @description 顶部 tab 栏，订单列表｜分类比较常用
- * @tutorial https://ext.dcloud.net.cn/plugin?id=1971
- * @version 2.0.9
  * @property {Number} value 选中的下标
  * @property {Array} tabs tabs 列表
  * @property {String} bgColor = '#fff' 背景颜色
@@ -94,6 +91,7 @@
  * @property {String} field 如果是对象，显示的键名
  * @property {Boolean} fixed = [true | false] 是否固定
  * @property {String} paddingItem = '0 22rpx' 选项的边距
+ * @property {Boolean} lineAnimation = [true | false] 下划线是否有动画
  *
  * @event {Function(current)} change 改变标签触发
  */
@@ -105,7 +103,7 @@ export default {
     },
     tabs: {
       type: Array,
-      default() {
+      default () {
         return []
       }
     },
@@ -163,7 +161,7 @@ export default {
     },
     pills: {
       type: Boolean,
-      deafult: false
+      default: false
     },
     pillsColor: {
       type: String,
@@ -184,9 +182,13 @@ export default {
     paddingItem: {
       type: String,
       default: '0 22rpx'
+    },
+    lineAnimation: {
+      type: Boolean,
+      default: true
     }
   },
-  data() {
+  data () {
     return {
       elId: '',
       lineWidth: 30,
@@ -195,21 +197,20 @@ export default {
       pillsLeft: 0, // 胶囊距离左侧的位置
       scrollLeft: 0, // 距离左边的位置
       containerWidth: 0, // 容器的宽度
-      current: -1, // 当前选中项
-      items: [] // 所有的选项列表属性
+      current: 0 // 当前选中项
     }
   },
   watch: {
-    value(newVal) {
+    value (newVal) {
       this.current = newVal
       this.$nextTick(() => {
         this.getTabItemWidth()
       })
     },
-    current(newVal) {
+    current (newVal) {
       this.$emit('input', newVal)
     },
-    tabs(newVal) {
+    tabs (newVal) {
       this.$nextTick(() => {
         this.getTabItemWidth()
       })
@@ -217,10 +218,9 @@ export default {
   },
   methods: {
     // 产生随机字符串
-    randomString(len) {
+    randomString (len) {
       len = len || 32
-      let $chars =
-        'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678' /****默认去掉了容易混淆的字符oOLl,9gq,Vv,Uu,I1****/
+      let $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678' /****默认去掉了容易混淆的字符oOLl,9gq,Vv,Uu,I1****/
       let maxPos = $chars.length
       let pwd = ''
       for (let i = 0; i < len; i++) {
@@ -229,75 +229,67 @@ export default {
       return pwd
     },
     // 切换事件
-    change(index) {
-      if (this.current !== index) {
+    change (index) {
+      const isDisabled = !!this.tabs[index].disabled
+      if (this.current !== index && !isDisabled) {
         this.current = index
 
         this.$emit('change', index)
       }
     },
     // 获取左移动位置
-    getTabItemWidth() {
+    getTabItemWidth () {
       let query = uni
         .createSelectorQuery()
         // #ifndef MP-ALIPAY
         .in(this)
       // #endif
-      // 获取容器的宽度: 当容器的宽度不存在的时候获取
-      if (!this.containerWidth) {
-        query
-          .select(`#scrollContainer`)
-          .boundingClientRect((data) => {
-            if (data) {
-              this.containerWidth = data.width
-            }
-          })
-          .exec()
-      }
-      // 第一次缓存节点的信息，不在去获取 dom 节点的数据
-      if (this.items.length <= 0) {
-        query
-          .selectAll('.v-tabs__container-item')
-          .boundingClientRect((data) => {
-            if (!data) {
-              return
-            }
-            this.items = data
-            this.calculatePosition()
-          })
-          .exec()
-      } else {
-        this.calculatePosition()
-      }
-    },
-    calculatePosition() {
-      const data = this.items
-      if (data.length <= 0) return
-      let lineLeft = 0
-      let currentWidth = 0
-      if (data) {
-        data.map((item, index) => {
-          if (index < this.current) {
-            lineLeft += item.width
+      // 获取容器的宽度
+      query
+        .select(`#scrollContainer`)
+        .boundingClientRect((data) => {
+          if (!this.containerWidth && data) {
+            this.containerWidth = data.width
           }
         })
-        currentWidth = data[this.current].width
-      }
-      // 当前滑块的宽度
-      this.currentWidth = currentWidth
-      // 缩放后的滑块宽度
-      this.lineWidth = currentWidth * this.lineScale * 1
-      // 滑块作移动的位置
-      this.lineLeft = lineLeft + currentWidth / 2
-      // 胶囊距离左侧的位置
-      this.pillsLeft = lineLeft
-      // 计算滚动的距离左侧的位置
-      if (this.scroll) {
-        this.scrollLeft = this.lineLeft - this.containerWidth / 2
-      }
+        .exec()
+      // 获取所有的 tab-item 的宽度
+      query
+        .selectAll('.v-tabs__container-item')
+        .boundingClientRect((data) => {
+          if (!data) {
+            return
+          }
+          let lineLeft = 0
+          let currentWidth = 0
+          if (data) {
+            for (let i = 0; i < data.length; i++) {
+              if (i < this.current) {
+                lineLeft += data[i].width
+              } else if (i == this.current) {
+                currentWidth = data[i].width
+              } else {
+                break
+              }
+            }
+          }
+          // 当前滑块的宽度
+          this.currentWidth = currentWidth
+          // 缩放后的滑块宽度
+          this.lineWidth = currentWidth * this.lineScale * 1
+          // 滑块作移动的位置
+          this.lineLeft = lineLeft + currentWidth / 2
+          // 胶囊距离左侧的位置
+          this.pillsLeft = lineLeft
+          // 计算滚动的距离左侧的位置
+          if (this.scroll) {
+            this.scrollLeft = this.lineLeft - this.containerWidth / 2
+          }
+        })
+        .exec()
     }
   },
-  mounted() {
+  mounted () {
     this.elId = 'xfjpeter_' + this.randomString()
     this.current = this.value
     this.$nextTick(() => {
@@ -334,18 +326,26 @@ export default {
       // padding: 0 11px;
       transition: all 0.3s;
       white-space: nowrap;
+      &.disabled {
+        opacity: 0.5;
+        color: #999;
+      }
     }
 
     &-line {
       position: absolute;
       bottom: 0;
-      transition: all 0.3s linear;
     }
 
     &-pills {
       position: absolute;
-      transition: all 0.3s linear;
       z-index: 9;
+    }
+    &-line,
+    &-pills {
+      &.animation {
+        transition: all 0.3s linear;
+      }
     }
   }
 }

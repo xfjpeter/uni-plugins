@@ -48,18 +48,22 @@
         pillsBorderRadius="10rpx"
       ></v-tabs>
     </view>
+
+    <view class="mb">
+      <v-tabs v-model="current" :tabs="tabs4" @change="changeTab" field="name" :scroll="false" />
+      <button @click="toggleDisabledStatus">{{ isDisabled ? '启用' : '禁用' }}(退款/售后)</button>
+    </view>
   </view>
 </template>
 
 <script>
 export default {
-  data() {
+  data () {
     return {
-      current: 0,
+      isDisabled: true,
+      current: 1,
       activeTab: 1,
-      tabs3: ['选项一', '选项二'],
       tabs: ['军事', '国内', '新闻新闻', '军事', '国内', '新闻', '军事', '国内', '新闻'],
-      tabs2: ['全部', '待付款', '待消费', '已完成', '已评价', '已过期', '已退款'],
       tabs1: [
         {
           name: '全部',
@@ -77,12 +81,25 @@ export default {
           name: '已完成',
           value: 4
         }
+      ],
+      tabs2: ['全部', '待付款', '待消费', '已完成', '已评价', '已过期', '已退款'],
+      tabs3: ['选项一', '选项二'],
+      tabs4: [
+        { id: 1, name: '待付款', disabled: false },
+        { id: 2, name: '待收货', disabled: false },
+        { id: 3, name: '待评价', disabled: false },
+        { id: 4, name: '退款/售后', disabled: true },
+        { id: 5, name: '我的订单', disabled: false }
       ]
     }
   },
   methods: {
-    changeTab(index) {
+    changeTab (index) {
       console.log('当前 index :' + index)
+    },
+    toggleDisabledStatus () {
+      this.isDisabled = !this.isDisabled
+      this.tabs4[3].disabled = this.isDisabled
     }
   }
 }

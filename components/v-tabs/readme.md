@@ -1,7 +1,3 @@
-## 写在前面：
-
-> 欢迎各位老铁反馈 bug ，本人后端 PHP 一枚，只是应为感兴趣前端，自己琢磨，自己搞。如果你在使用的过程中有什么不合理，需要优化的，都可以在下面评论（或加我 QQ: 1207791534，QQ 群: 917543334），本人看见后回复、修正，感谢。
-
 ## 插件说明
 
 > 这是 `v-tabs` 插件的升级版本，参数上有很大变动，支持 `H5` `小程序` `手机端`，如果是在之前的插件上升级的话，请注意参数的变更，触发的事件没有变更。
@@ -92,27 +88,63 @@ data() {
 
 ### 1、属性说明
 
-|       参数        |  类型   |  默认值   |                    说明                    |
-| :---------------: | :-----: | :-------: | :----------------------------------------: |
-|       value       | Number  |     0     |             必传(双向绑定的值)             |
-|       color       | String  |  '#333'   |                默认文字颜色                |
-|    activeColor    | String  | '#2979ff' |               选中文字的颜色               |
-|     fontSize      | String  |  '28rpx'  |          默认文字大小(rpx 或 px)           |
-|       bold        | Boolean |   true    |               是否加粗选中项               |
-|      scroll       | Boolean |   true    |       是否显示滚动条，平铺设置 false       |
-|      height       | String  |  '70rpx'  |            tab 高度(rpx 或 px)             |
-|    lineHeight     | String  |  '10rpx'  |            滑块高度(rpx 或 px)             |
-|     lineColor     | String  | '#2979ff' |                 滑块的颜色                 |
-|     lineScale     | Number  |    0.5    |               滑块宽度缩放值               |
-|    lineRadius     | String  |  '10rpx'  |          滑块圆角宽度(rpx 或 px)           |
-|       pills       | Boolean |   false   |                是否开启胶囊                |
-|    pillsColor     | String  | '#2979ff' |          胶囊背景颜色(rpx 或 px)           |
-| pillsBorderRadius | String  |  '10rpx'  |          胶囊圆角宽度(rpx 或 px)           |
-|       field       | String  |    ''     |  如果 tabs 子项是对象，输入需要展示的键名  |
-|      bgColor      | String  |  '#fff'   |     背景色，支持 linear-gradient 渐变      |
-|      padding      | String  |    '0'    |           整个 tab padding 属性            |
-|       fixed       | Boolean |   false   |               是否固定在顶部               |
-|    paddingItem    | String  | '0 22rpx' | 选项的边距（设置上下不生效，需要设置高度） |
+|       参数        |  类型   |  默认值   |                                   说明                                    |
+| :---------------: | :-----: | :-------: | :-----------------------------------------------------------------------: |
+|       tabs        |  Array  |    []     |                              控制 tab 的列表                              |
+|       value       | Number  |     0     |                            必传(双向绑定的值)                             |
+|       color       | String  |  '#333'   |                               默认文字颜色                                |
+|    activeColor    | String  | '#2979ff' |                              选中文字的颜色                               |
+|     fontSize      | String  |  '28rpx'  |                      默认文字大小(rpx 或 px)（弃用）                      |
+|       bold        | Boolean |   true    |                              是否加粗选中项                               |
+|      scroll       | Boolean |   true    |                      是否显示滚动条，平铺设置 false                       |
+|      height       | String  |  '70rpx'  |                            tab 高度(rpx 或 px)                            |
+|    lineHeight     | String  |  '10rpx'  |                            滑块高度(rpx 或 px)                            |
+|     lineColor     | String  | '#2979ff' |                                滑块的颜色                                 |
+|     lineScale     | Number  |    0.5    |                              滑块宽度缩放值                               |
+|    lineRadius     | String  |  '10rpx'  |                          滑块圆角宽度(rpx 或 px)                          |
+|       pills       | Boolean |   false   |                               是否开启胶囊                                |
+|    pillsColor     | String  | '#2979ff' |                          胶囊背景颜色(rpx 或 px)                          |
+| pillsBorderRadius | String  |  '10rpx'  |                          胶囊圆角宽度(rpx 或 px)                          |
+|       field       | String  |    ''     |                 如果 tabs 子项是对象，输入需要展示的键名                  |
+|      bgColor      | String  |  '#fff'   |                     背景色，支持 linear-gradient 渐变                     |
+|      padding      | String  |    '0'    |                           整个 tab padding 属性                           |
+|       fixed       | Boolean |   false   |                              是否固定在顶部                               |
+|    paddingItem    | String  | '0 22rpx' |                选项的边距（设置上下不生效，需要设置高度）                 |
+|   lineAnimation   | Boolean |   true    | 是否需要 line 和 pills 的动画，在隐藏页面后默认移动到第一个的时候比较实用 |
+
+### 1.1 `tabs`参数展开说明
+
+#### 1.1。1 当`tabs`仅仅是单纯的数组时候，没有什么特别的地方
+
+```js
+export default {
+  data() {
+    return {
+      tabs: ['全部', '待付款', '待消费', '已完成', '已评价', '已过期', '已退款']
+    }
+  }
+}
+```
+
+#### 1.1.2 当`tabs`使用的数组对象的方式，特定参数需要注意一下
+
+- `disabled` 参数，可以控制按钮是否可以点击
+
+```js
+export default {
+  data() {
+    return {
+      tabs: [
+        { id: 1, name: '待付款', disabled: false },
+        { id: 2, name: '待收货', disabled: false },
+        { id: 3, name: '待评价', disabled: false },
+        { id: 4, name: '退款/售后', disabled: true },
+        { id: 5, name: '我的订单', disabled: false }
+      ]
+    }
+  }
+}
+```
 
 ### 2、事件说明
 
@@ -122,11 +154,25 @@ data() {
 
 ## 更新日志
 
-### 2020-12-04 `v2.0.10`
+### 2022-08-12
 
-1. 缓存 dom 节点，不用每次都去获取 dom 节点
+1. 增加`disable`参数，控制是否可以点击，只能应用在数组对象中，见[disabled 的用法](#112-当tabs使用的数组对象的方式特定参数需要注意一下)
 
-### 2020-09-24 `v2.0.9`
+```js
+export default {
+  data() {
+    return {
+      tabs: [{ id: 1, name: '' }]
+    }
+  }
+}
+```
+
+### 2022-01-27
+
+1. 更新属性`line-animation`设置为`false`可以不要动画，这是好多朋友问到，特此加上
+
+### 2020-09-24
 
 1. 修复 `v-tabs` 第一次可能出现第一个标签显示不完整的情况
 2. 修改了 `pages/tabs/order` 示例文件
@@ -136,6 +182,9 @@ data() {
 1. 修复添加 `fixed` 属性后，滚动条无效
 2. 修复选项很少的情况下，下划线计算计算错误
 3. 新增 `paddingItem` 属性，设置选项左右边距（上下边距需要设置 `height` 属性，或者设置 `padding` 属性）
+
+**写在最后：**
+欢迎各位老铁反馈 bug ，本人后端 PHP 一枚，只是应为感兴趣前端，自己琢磨，自己搞。如果你在使用的过程中有什么不合理，需要优化的，都可以在下面评论（或加我 QQ: 1207791534），本人看见后回复、修正，感谢。
 
 ### 2020-09-17
 
