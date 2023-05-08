@@ -3,7 +3,7 @@
     <div>
       <span @click="show = true">点我调用键盘：{{ inputValue }}</span>
     </div>
-    <v-keyboard :show.sync="show" :value.sync="inputValue" @confirm="onConfirm" :max-length="11"></v-keyboard>
+    <v-keyboard type="tel" :show.sync="show" :value.sync="inputValue" @confirm="onConfirm" :max-length="11"></v-keyboard>
   </view>
 </template>
 
