@@ -6,6 +6,10 @@
      	{
      		"launchtype" : "local"
      	},
+     	"mp-alipay" : 
+     	{
+     		"launchtype" : "local"
+     	},
      	"mp-toutiao" : 
      	{
      		"launchtype" : "local"

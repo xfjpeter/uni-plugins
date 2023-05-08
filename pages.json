@@ -1,52 +1,58 @@
 {
-  "pages": [
-    //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-    {
-      "path": "pages/index/index",
-      "style": {
-        "navigationBarTitleText": "示例"
-      }
-    },
-    {
-      "path": "pages/tabs/tabs",
-      "style": {
-        "navigationBarTitleText": "v-tabs 示例"
-      }
-    },
-    {
-      "path": "pages/navbar/navbar",
-      "style": {
-        "navigationBarTitleText": "navbar 示例",
-        "navigationStyle": "custom"
-      }
-    },
-    {
-      "path": "pages/tabs/order",
-      "style": {
-        "navigationBarTitleText": "tabs+swiper组合"
-      }
-    },
-    {
-      "path": "pages/tabs/tabs-static",
-      "style": {
-        "navigationBarTitleText": "固定在顶部"
-      }
-    },
-    {
-      "path": "pages/tabs/column",
-      "style": {
-        "navigationBarTitleText": "侧边 tabs"
-      }
-    },
-    {
-      "path": "pages/tabs/v-tabs-1/v-tabs-1",
-      "style": {}
-    }
-  ],
-  "globalStyle": {
-    "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "v-tabs",
-    "navigationBarBackgroundColor": "#F8F8F8",
-    "backgroundColor": "#F8F8F8"
-  }
+	"pages": [
+		//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "示例"
+			}
+		},
+		{
+			"path": "pages/tabs/tabs",
+			"style": {
+				"navigationBarTitleText": "v-tabs 示例"
+			}
+		},
+		{
+			"path": "pages/navbar/navbar",
+			"style": {
+				"navigationBarTitleText": "navbar 示例",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/tabs/order",
+			"style": {
+				"navigationBarTitleText": "tabs+swiper组合"
+			}
+		},
+		{
+			"path": "pages/tabs/tabs-static",
+			"style": {
+				"navigationBarTitleText": "固定在顶部"
+			}
+		},
+		{
+			"path": "pages/tabs/column",
+			"style": {
+				"navigationBarTitleText": "侧边 tabs"
+			}
+		},
+		{
+			"path": "pages/tabs/v-tabs-1/v-tabs-1",
+			"style": {}
+		},
+		{
+			"path": "pages/keyboard/keyboard",
+			"style": {
+				"navigationBarTitleText": "数字键盘示例"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "v-tabs",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	}
 }
