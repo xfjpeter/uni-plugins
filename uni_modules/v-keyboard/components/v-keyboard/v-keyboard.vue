@@ -19,7 +19,7 @@
           @click="onSelect(number)"
           >{{ number }}</view
         >
-        <view class="wrapper-item backspace" @click="onBackspace"></view>
+        <view class="wrapper-item backspace" @touchstart="handleTouchStart" @touchmove="handleTouchMove" @touchend="handleTouchEnd" @click="onBackspace"></view>
       </view>
       <!-- 安全距离 -->
       <view class="env-safe-bottom"></view>
@@ -149,6 +149,23 @@ export default {
       }
 
       return false
+    },
+    handleTouchStart(e) {
+      const { pageX, pageY } = e.touches[0]
+      this.pos = { pageX, pageY }
+      this.timeoutTimer = setTimeout(() => {
+        this.intervalTimer = setInterval(this.onBackspace, 100)
+      }, 300)
+    },
+    handleTouchMove(e) {
+      const { pageX, pageY } = e.touches[0]
+      if (Math.abs(this.pos.pageX - pageX) <= 10 && Math.abs(this.pos.pageY - pageY) < 10) {
+        this.handleTouchEnd()
+      }
+    },
+    handleTouchEnd() {
+      clearTimeout(this.timeoutTimer)
+      clearInterval(this.intervalTimer)
     }
   }
 }
