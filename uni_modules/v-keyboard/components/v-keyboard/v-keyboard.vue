@@ -53,6 +53,7 @@ export default {
     // #ifdef VUE2
     value: [String, Number],
     // #endif
+    auto: Boolean,
     mask: Boolean,
     type: {
       require: false,
@@ -116,7 +117,7 @@ export default {
       this.$emit('update:modelValue', newVal)
       // #endif
       // 自动触发 @confirm 回调
-      if (this.maxLength !== 0 && this.inputValueArr.length === this.maxLength) {
+      if (this.maxLength !== 0 && this.inputValueArr.length === this.maxLength * 1 && this.auto) {
         this.$emit('confirm', newVal)
         this.toggleKeyboard()
       }
