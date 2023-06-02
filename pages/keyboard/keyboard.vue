@@ -1,10 +1,18 @@
 <template>
-	<view>
-		<div @click="toggleKeyboard()">
-			<span>点我调用键盘：{{ inputValue }}</span>
+	<view class="content">
+		<div>页面中的值：{{inputValue}}</div>
+		<div>
+			<span @click="show = true">点我调用键盘</span>
 		</div>
-		<v-keyboard type="tel" :show.sync="show" :value.sync="inputValue" @confirm="onConfirm"
-			:max-length="11"></v-keyboard>
+		<!-- #ifdef VUE3 -->
+		<!-- vue3一定要用 @update:show 在方法中更新状态；vue3中不支持.sync，所以.... -->
+		<v-keyboard :show="show" @update:show="flag => show = flag" v-model="inputValue" />
+		<!-- #endif -->
+
+		<!-- #ifdef VUE2 -->
+		<!-- vue2的用法 -->
+		<v-keyboard :show.sync="show" :value.sync="inputValue" />
+		<!-- #endif -->
 	</view>
 </template>
 
@@ -12,16 +20,8 @@
 	export default {
 		data() {
 			return {
-				inputValue: '',
-				show: false
-			}
-		},
-		methods: {
-			onConfirm(value) {
-				alert(`当前输入完成，输入的内容是：${value}`)
-			},
-			toggleKeyboard() {
-				this.show = !this.show
+				show: false,
+				inputValue: '13123123'
 			}
 		}
 	}

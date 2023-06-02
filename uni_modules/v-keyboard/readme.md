@@ -9,10 +9,21 @@
 ### 2.1 基本使用
 
 ```html
-<div>
-  <span @click="show = true">点我调用键盘：{{ inputValue }}</span>
+<div class="content">
+  <div>页面中的值：{{inputValue}}</div>
+  <div>
+    <span @click="show = true">点我调用键盘</span>
+  </div>
+  <!-- #ifdef VUE3 -->
+  <!-- vue3一定要用 @update:show 在方法中更新状态；vue3中不支持.sync，所以.... -->
+  <v-keyboard :show="show" @update:show="flag => show = flag" v-model="inputValue" />
+  <!-- #endif -->
+
+  <!-- #ifdef VUE2 -->
+  <!-- vue2的用法 -->
+  <v-keyboard :show.sync="show" :value.sync="inputValue" />
+  <!-- #endif -->
 </div>
-<v-keyboard :show.sync="show" :value.sync="inputValue"></v-keyboard>
 ```
 
 ```javascript
