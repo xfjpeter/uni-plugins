@@ -5,7 +5,7 @@
       :scroll-x="scroll"
       :scroll-left="scroll ? scrollLeft : 0"
       :scroll-with-animation="scroll"
-      :style="{ position: fixed ? 'fixed' : 'relative', zIndex: 1993 }"
+      :style="{ position: fixed ? 'fixed' : 'relative', zIndex }"
     >
       <view
         class="v-tabs__container"
@@ -92,6 +92,7 @@
  * @property {Boolean} fixed = [true | false] 是否固定
  * @property {String} paddingItem = '0 22rpx' 选项的边距
  * @property {Boolean} lineAnimation = [true | false] 下划线是否有动画
+ * @property {Number} zIndex = 1993 默认层级
  *
  * @event {Function(current)} change 改变标签触发
  */
@@ -186,6 +187,10 @@ export default {
     lineAnimation: {
       type: Boolean,
       default: true
+    },
+    zIndex: {
+      type: Number,
+      default: 1993
     }
   },
   data () {

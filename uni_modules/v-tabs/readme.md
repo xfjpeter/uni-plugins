@@ -111,6 +111,7 @@ data() {
 |       fixed       | Boolean |   false   |                              是否固定在顶部                               |
 |    paddingItem    | String  | '0 22rpx' |                选项的边距（设置上下不生效，需要设置高度）                 |
 |   lineAnimation   | Boolean |   true    | 是否需要 line 和 pills 的动画，在隐藏页面后默认移动到第一个的时候比较实用 |
+|      zIndex       | Number  |   1993    |                         控制 tab 的层级，默认1993                         |
 
 ### 1.1 `tabs`参数展开说明
 
