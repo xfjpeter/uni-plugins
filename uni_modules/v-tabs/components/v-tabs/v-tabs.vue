@@ -213,6 +213,9 @@ export default {
       })
     },
     current (newVal) {
+      this.$nextTick(() => {
+        this.getTabItemWidth()
+      })
       this.$emit('input', newVal)
     },
     tabs (newVal) {
