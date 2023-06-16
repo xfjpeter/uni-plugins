@@ -259,7 +259,12 @@ export default {
         })
         .exec()
       // 获取所有的 tab-item 的宽度
-      query
+      let query1 = uni
+        .createSelectorQuery()
+        // #ifndef MP-ALIPAY
+        .in(this)
+      // #endif
+      query1
         .selectAll('.v-tabs__container-item')
         .boundingClientRect((data) => {
           if (!data) {
