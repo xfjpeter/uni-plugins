@@ -5,8 +5,7 @@
       :scroll-x="scroll"
       :scroll-left="scroll ? scrollLeft : 0"
       :scroll-with-animation="scroll"
-      :style="{ position: fixed ? 'fixed' : 'relative', zIndex: 1993 }"
-    >
+      :style="{ position: fixed ? 'fixed' : 'relative', zIndex }">
       <view
         class="v-tabs__container"
         :style="{
@@ -15,8 +14,7 @@
           background: bgColor,
           height,
           padding
-        }"
-      >
+        }">
         <view
           :class="['v-tabs__container-item', { disabled: !!v.disabled }]"
           v-for="(v, i) in tabs"
@@ -29,9 +27,8 @@
             flex: scroll ? '' : 1,
             padding: paddingItem
           }"
-          @click="change(i)"
-        >
-          {{ field ? v[field] : v }}
+          @click="change(i)">
+          <slot v-bind="{ row: v, $index: i }">{{ field ? v[field] : v }}</slot>
         </view>
         <view
           v-if="!pills"
@@ -43,8 +40,7 @@
             borderRadius: lineRadius,
             left: lineLeft + 'px',
             transform: `translateX(-${lineWidth / 2}px)`
-          }"
-        ></view>
+          }"></view>
         <view
           v-else
           :class="['v-tabs__container-pills', { animation: lineAnimation }]"
@@ -54,8 +50,7 @@
             left: pillsLeft + 'px',
             width: currentWidth + 'px',
             height
-          }"
-        ></view>
+          }"></view>
       </view>
     </scroll-view>
     <view
@@ -63,8 +58,7 @@
       :style="{
         height: fixed ? height : '0',
         padding
-      }"
-    ></view>
+      }"></view>
   </view>
 </template>
 
@@ -92,6 +86,7 @@
  * @property {Boolean} fixed = [true | false] 是否固定
  * @property {String} paddingItem = '0 22rpx' 选项的边距
  * @property {Boolean} lineAnimation = [true | false] 下划线是否有动画
+ * @property {Number} zIndex = 1993 默认层级
  *
  * @event {Function(current)} change 改变标签触发
  */
@@ -103,7 +98,7 @@ export default {
     },
     tabs: {
       type: Array,
-      default () {
+      default() {
         return []
       }
     },
@@ -186,9 +181,13 @@ export default {
     lineAnimation: {
       type: Boolean,
       default: true
+    },
+    zIndex: {
+      type: Number,
+      default: 1993
     }
   },
-  data () {
+  data() {
     return {
       elId: '',
       lineWidth: 30,
@@ -201,16 +200,16 @@ export default {
     }
   },
   watch: {
-    value (newVal) {
+    value(newVal) {
       this.current = newVal
       this.$nextTick(() => {
         this.getTabItemWidth()
       })
     },
-    current (newVal) {
+    current(newVal) {
       this.$emit('input', newVal)
     },
-    tabs (newVal) {
+    tabs(newVal) {
       this.$nextTick(() => {
         this.getTabItemWidth()
       })
@@ -218,7 +217,7 @@ export default {
   },
   methods: {
     // 产生随机字符串
-    randomString (len) {
+    randomString(len) {
       len = len || 32
       let $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678' /****默认去掉了容易混淆的字符oOLl,9gq,Vv,Uu,I1****/
       let maxPos = $chars.length
@@ -229,7 +228,7 @@ export default {
       return pwd
     },
     // 切换事件
-    change (index) {
+    change(index) {
       const isDisabled = !!this.tabs[index].disabled
       if (this.current !== index && !isDisabled) {
         this.current = index
@@ -238,7 +237,7 @@ export default {
       }
     },
     // 获取左移动位置
-    getTabItemWidth () {
+    getTabItemWidth() {
       let query = uni
         .createSelectorQuery()
         // #ifndef MP-ALIPAY
@@ -247,7 +246,7 @@ export default {
       // 获取容器的宽度
       query
         .select(`#scrollContainer`)
-        .boundingClientRect((data) => {
+        .boundingClientRect(data => {
           if (!this.containerWidth && data) {
             this.containerWidth = data.width
           }
@@ -256,7 +255,7 @@ export default {
       // 获取所有的 tab-item 的宽度
       query
         .selectAll('.v-tabs__container-item')
-        .boundingClientRect((data) => {
+        .boundingClientRect(data => {
           if (!data) {
             return
           }
@@ -289,7 +288,7 @@ export default {
         .exec()
     }
   },
-  mounted () {
+  mounted() {
     this.elId = 'xfjpeter_' + this.randomString()
     this.current = this.value
     this.$nextTick(() => {

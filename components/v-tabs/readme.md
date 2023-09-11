@@ -111,6 +111,7 @@ data() {
 |       fixed       | Boolean |   false   |                              是否固定在顶部                               |
 |    paddingItem    | String  | '0 22rpx' |                选项的边距（设置上下不生效，需要设置高度）                 |
 |   lineAnimation   | Boolean |   true    | 是否需要 line 和 pills 的动画，在隐藏页面后默认移动到第一个的时候比较实用 |
+|      zIndex       | Number  |   1993    |                         控制 tab 的层级，默认1993                         |
 
 ### 1.1 `tabs`参数展开说明
 
@@ -153,6 +154,17 @@ export default {
 | change | index | 改变选中项触发, index 选中项的下标 |
 
 ## 更新日志
+
+### 2.1.3（2023-09-11）
+1. [新增]支持自定义插槽模式，具体可以查看示例代码使用方式。[gitee demo](https://github.com/xfjpeter/uni-plugins/blob/master/pages/tabs/tabs.vue#L47-L50) 或 [github demo](https://github.com/xfjpeter/uni-plugins/blob/master/pages/tabs/tabs.vue#L47-L50)
+
+### 2.1.2（2023-06-12）
+1. [新增]添加`z-index`参数控制层级大小，默认1993
+2. [说明]以后该插件只更新`uni_modules`方式的，`zip`方式的不提供更新了，如果需要的请到 [gitee uni-plugins](https://gitee.com/xfjpeter/uni-plugins) 或 [github uni-plugins](https://github.com/xfjpeter/uni-plugins)下载源码，自行使用
+
+### 2.1.1（2022-09-16）
+
+1. 将插件更新为`uni_modules`方式
 
 ### 2022-08-12
 
