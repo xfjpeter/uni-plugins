@@ -2,7 +2,7 @@
 	<view class="container">
 		<view class="mb">
 			<view class="title">常规用法：</view>
-			<v-tabs v-model="current" :tabs="tabs" :line-animation="false" @change="changeTab"></v-tabs>
+			<button type="default" @click="togglePopup">点我切换状态</button>
 		</view>
 		<view class="mb">
 			<view class="title">无下划线、无胶囊：</view>
@@ -30,6 +30,12 @@
 			<v-tabs v-model="current" :tabs="tabs4" @change="changeTab" field="name" :scroll="false" />
 			<button @click="toggleDisabledStatus">{{ isDisabled ? '启用' : '禁用' }}(退款/售后)</button>
 		</view>
+
+		<uni-popup ref="popup" type="bottom" @maskClick="togglePopup">
+			<view v-if="showTabs === true">
+				<v-tabs :line-animation="!showTabs" v-model="current" :tabs="tabs" @change="changeTab"></v-tabs>
+			</view>
+		</uni-popup>
 	</view>
 </template>
 
@@ -40,6 +46,7 @@
 				isDisabled: true,
 				current: 1,
 				activeTab: 1,
+				showTabs: false,
 				tabs: ['军事', '国内', '新闻新闻', '军事', '国内', '新闻', '军事', '国内', '新闻'],
 				tabs1: [{
 						name: '全部',
@@ -89,6 +96,15 @@
 			}
 		},
 		methods: {
+			togglePopup() {
+				if (this.showTabs) {
+					this.$refs.popup.close()
+					this.showTabs = false
+				} else {
+					this.$refs.popup.open('bottom')
+					this.showTabs = true
+				}
+			},
 			changeTab(index) {
 				console.log('当前 index :' + index, '值是：' + this.tabs1[index].value)
 			},
