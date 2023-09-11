@@ -1,7 +1,7 @@
 {
   "id": "v-tabs",
   "displayName": "自定义 tab 选项卡 2",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "description": "自定义 tab ，支持多种样式，支持 h5 小程序 app",
   "keywords": [
     "v-tabs",
