@@ -2,7 +2,7 @@
 	<view class="content">
 		<div>页面中的值：{{inputValue}}</div>
 		<div>
-			<span @click="show = true">点我调用键盘</span>
+			<p @click="show = true">点我调用键盘</p>
 		</div>
 		<!-- #ifdef VUE3 -->
 		<!-- vue3一定要用 @update:show 在方法中更新状态；vue3中不支持.sync，所以.... -->

@@ -1,6 +1,10 @@
 <template>
   <view class="container">
     <view class="mb">
+      <view class="title">两个的情况</view>
+      <v-tabs v-model="cur1" :tabs="['第一个', '第二个']" :scroll="false" :line-scale="0.1" />
+    </view>
+    <view class="mb">
       <view class="title">常规用法：</view>
       <button type="default" @click="togglePopup">点我切换状态</button>
     </view>
@@ -69,6 +73,7 @@ export default {
   data() {
     return {
       isDisabled: true,
+      cur1: 0,
       current: 1,
       activeTab: 1,
       showTabs: false,
