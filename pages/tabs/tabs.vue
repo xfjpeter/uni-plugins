@@ -9,21 +9,21 @@
       <button type="default" @click="togglePopup">点我切换状态</button>
     </view>
     <view class="mb">
-      <view class="title">无下划线、无胶囊：</view>
-      <v-tabs v-model="current" :tabs="tabs" :bold="true" line-height="0" line-radius="0" @change="changeTab"> </v-tabs>
+      <!-- <view class="title">无下划线、无胶囊：</view> -->
+      <v-tabs v-model="current1" :tabs="tabs1" :bold="true" line-height="0" line-radius="0" />
     </view>
     <view class="mb">
       <view class="title">键值、平铺用法：</view>
-      <v-tabs v-model="activeTab" :scroll="false" :bold="true" :tabs="tabs1" field="name"></v-tabs>
+      <v-tabs v-model="current4" :scroll="false" :bold="true" :tabs="tabs4" field="name"></v-tabs>
     </view>
     <view class="mb">
       <view class="title">胶囊用法、背景、padding：</view>
       <v-tabs
-        v-model="current"
+        v-model="current3"
         padding="10px 0"
         pills-border-radius="60rpx"
         bg-color="#f6f6f6"
-        :tabs="tabs"
+        :tabs="tabs3"
         :pills="true"
         :bold="true"
         line-height="0"
@@ -33,8 +33,8 @@
     <view class="mb">
       <view class="title">完整参数用法：</view>
       <v-tabs
-        v-model="current"
-        :tabs="tabs"
+        v-model="current4"
+        :tabs="tabs4"
         color="#333"
         activeColor="#fff"
         fontSize="28rpx"
@@ -48,21 +48,21 @@
         :pills="true"
         pillsColor="#2979ff"
         pillsBorderRadius="10rpx">
-        <view class="tab-title" slot-scope="{ row, $index }">
-          <text>{{ row }},{{ $index }}</text>
+        <view class="tab-title" slot-scope="{ row, index }">
+          <text>{{ row.name }},{{ index }}</text>
           <text>-1111</text>
         </view>
       </v-tabs>
     </view>
 
     <view class="mb">
-      <v-tabs v-model="current" :tabs="tabs4" @change="changeTab" field="name" :scroll="false" />
+      <v-tabs v-model="current4" :tabs="tabs4" @change="changeTab" field="name" :scroll="false" />
       <button @click="toggleDisabledStatus">{{ isDisabled ? '启用' : '禁用' }}(退款/售后)</button>
     </view>
 
     <uni-popup ref="popup" type="bottom" @maskClick="togglePopup">
       <view v-if="showTabs === true">
-        <v-tabs :line-animation="!showTabs" v-model="current" :tabs="tabs" @change="changeTab"></v-tabs>
+        <v-tabs :line-animation="!showTabs" v-model="current1" :tabs="tabs1" @change="changeTab"></v-tabs>
       </view>
     </uni-popup>
   </view>
@@ -74,30 +74,14 @@ export default {
     return {
       isDisabled: true,
       cur1: 0,
-      current: 1,
-      activeTab: 1,
-      showTabs: false,
-      tabs: ['军事', '国内', '新闻新闻', '军事', '国内', '新闻', '军事', '国内', '新闻'],
-      tabs1: [
-        {
-          name: '全部',
-          value: 1
-        },
-        {
-          name: '待支付',
-          value: 2
-        },
-        {
-          name: '进行中',
-          value: 3
-        },
-        {
-          name: '已完成',
-          value: 4
-        }
-      ],
+      current1: 1,
+      tabs1: ['军事', '国内', '新闻新闻', '军事', '国内', '新闻', '军事', '国内', '新闻'],
+      current2: 2,
       tabs2: ['全部', '待付款', '待消费', '已完成', '已评价', '已过期', '已退款'],
-      tabs3: ['选项一', '选项二'],
+      current3: 3,
+      tabs3: ['军事', '国内', '新闻新闻', '军事', '国内', '新闻', '军事', '国内', '新闻'],
+      showTabs: false,
+      current4: 2,
       tabs4: [
         {
           id: 1,
@@ -138,7 +122,7 @@ export default {
       }
     },
     changeTab(index) {
-      console.log('当前 index :' + index, '值是：' + this.tabs1[index].value)
+      console.log('当前 index :' + index)
     },
     toggleDisabledStatus() {
       this.isDisabled = !this.isDisabled

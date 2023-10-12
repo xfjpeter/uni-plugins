@@ -155,8 +155,12 @@ export default {
 
 ## 更新日志
 
+### 2.1.4（2023-10-12）
+1. [修改]修改计算方式
+2. [新增]外部可以通过`this.$refs.tabs.update()`方法主动更新
+
 ### 2.1.3（2023-09-11）
-1. [新增]支持自定义插槽模式，具体可以查看示例代码使用方式。[gitee demo](https://github.com/xfjpeter/uni-plugins/blob/3e2bd062163f664889122fd74b8bd6ccad6a97f1/pages/tabs/tabs.vue#L47C10-L50C16) 或 [github demo](https://github.com/xfjpeter/uni-plugins/blob/3e2bd062163f664889122fd74b8bd6ccad6a97f1/pages/tabs/tabs.vue#L47C10-L50C16)
+1. [新增]支持自定义插槽模式，具体可以查看示例代码使用方式。[gitee demo](https://github.com/xfjpeter/uni-plugins/blob/master/pages/tabs/tabs.vue#L47-L50) 或 [github demo](https://github.com/xfjpeter/uni-plugins/blob/master/pages/tabs/tabs.vue#L47-L50)
 
 ### 2.1.2（2023-06-12）
 1. [新增]添加`z-index`参数控制层级大小，默认1993

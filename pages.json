@@ -48,7 +48,16 @@
 				"navigationBarTitleText": "数字键盘示例"
 			}
 		}
-	],
+	    ,{
+            "path" : "pages/test-v-tab/test-v-tab",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "v-tabs"

@@ -11,6 +11,7 @@
 			<navigator url="../navbar/navbar">navbar 示例</navigator>
 			<navigator url="../tabs/column">侧边 tabs</navigator>
 			<navigator url="../keyboard/keyboard">数字键盘</navigator>
+			<navigator url="../test-v-tab/test-v-tab">测试v-tab</navigator>
 		</view>
 	</view>
 </template>

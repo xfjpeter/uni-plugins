@@ -109,7 +109,7 @@ export default {
     getData() {
       let mockData = []
       // 每页模拟 10 调数据
-      for (let i = 0; i < 100; i++) {
+      for (let i = 0; i < 10; i++) {
         mockData.push(this.mockRowData)
       }
       this.$set(this.list[this.current], 'data', [...this.list[this.current].data, ...mockData])
@@ -125,7 +125,7 @@ export default {
     // 模拟请求分类
     setTimeout(() => {
       this.tabs = ['全部订单', '待付款', '待发货', '待收货', '已完成']
-
+      this.$refs.tabs.update()
       this.fillData()
     }, 500)
   }
@@ -142,6 +142,7 @@ export default {
   /* #endif */
   background-color: #f3f3f3;
   padding: 130rpx 30rpx 30rpx;
+  box-sizing: border-box;
 
   .tabs {
     position: fixed;
