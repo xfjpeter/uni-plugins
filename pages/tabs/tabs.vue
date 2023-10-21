@@ -18,36 +18,14 @@
     </view>
     <view class="mb">
       <view class="title">胶囊用法、背景、padding：</view>
-      <v-tabs
-        v-model="current3"
-        padding="10px 0"
-        pills-border-radius="60rpx"
-        bg-color="#f6f6f6"
-        :tabs="tabs3"
-        :pills="true"
-        :bold="true"
-        line-height="0"
-        activeColor="#fff"
-        @change="changeTab"></v-tabs>
+      <v-tabs v-model="current3" padding="10px 0" pills-border-radius="60rpx" bg-color="#f6f6f6" :tabs="tabs3"
+        :pills="true" :bold="true" line-height="0" activeColor="#fff" @change="changeTab"></v-tabs>
     </view>
     <view class="mb">
       <view class="title">完整参数用法：</view>
-      <v-tabs
-        v-model="current4"
-        :tabs="tabs4"
-        color="#333"
-        activeColor="#fff"
-        fontSize="28rpx"
-        :bold="true"
-        :scroll="true"
-        height="60rpx"
-        lineHeight="10rpx"
-        lineColor="#2979ff"
-        :lineScale="0.5"
-        lineRadius="10rpx"
-        :pills="true"
-        pillsColor="#2979ff"
-        pillsBorderRadius="10rpx">
+      <v-tabs v-model="current4" :tabs="tabs4" color="#333" activeColor="#fff" fontSize="28rpx" :bold="true"
+        :scroll="true" height="60rpx" lineHeight="10rpx" lineColor="#2979ff" :lineScale="0.5" lineRadius="10rpx"
+        :pills="true" pillsColor="#2979ff" pillsBorderRadius="10rpx">
         <view class="tab-title" slot-scope="{ row, index }">
           <text>{{ row.name }},{{ index }}</text>
           <text>-1111</text>
@@ -135,6 +113,7 @@ export default {
 <style lang="scss" scoped>
 .container {
   padding: 30rpx;
+  box-sizing: border-box;
 }
 
 .mb {
