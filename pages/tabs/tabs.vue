@@ -2,7 +2,7 @@
   <view class="container">
     <view class="mb">
       <view class="title">两个的情况</view>
-      <v-tabs v-model="cur1" :tabs="['第一个', '第二个']" :scroll="false" :line-scale="0.1" />
+      <v-tabs v-model="cur1" :tabs="['第一个', '第二个']" :scroll="false" :line-scale="0.1" @change="changeTab0" />
     </view>
     <view class="mb">
       <view class="title">常规用法：</view>
@@ -10,22 +10,42 @@
     </view>
     <view class="mb">
       <!-- <view class="title">无下划线、无胶囊：</view> -->
-      <v-tabs v-model="current1" :tabs="tabs1" :bold="true" line-height="0" line-radius="0" />
+      <v-tabs v-model="current1" :tabs="tabs1" line-height="0" line-radius="0" />
     </view>
     <view class="mb">
       <view class="title">键值、平铺用法：</view>
-      <v-tabs v-model="current4" :scroll="false" :bold="true" :tabs="tabs4" field="name"></v-tabs>
+      <v-tabs v-model="current4" :scroll="false" :tabs="tabs4" field="name"></v-tabs>
     </view>
     <view class="mb">
       <view class="title">胶囊用法、背景、padding：</view>
-      <v-tabs v-model="current3" padding="10px 0" pills-border-radius="60rpx" bg-color="#f6f6f6" :tabs="tabs3"
-        :pills="true" :bold="true" line-height="0" activeColor="#fff" @change="changeTab"></v-tabs>
+      <v-tabs
+        v-model="current3"
+        padding="10px 0"
+        pills-border-radius="60rpx"
+        bg-color="#f6f6f6"
+        :tabs="tabs3"
+        :pills="true"
+        line-height="0"
+        activeColor="#fff"
+        @change="changeTab"></v-tabs>
     </view>
     <view class="mb">
       <view class="title">完整参数用法：</view>
-      <v-tabs v-model="current4" :tabs="tabs4" color="#333" activeColor="#fff" fontSize="28rpx" :bold="true"
-        :scroll="true" height="60rpx" lineHeight="10rpx" lineColor="#2979ff" :lineScale="0.5" lineRadius="10rpx"
-        :pills="true" pillsColor="#2979ff" pillsBorderRadius="10rpx">
+      <v-tabs
+        v-model="current4"
+        :tabs="tabs4"
+        color="#333"
+        activeColor="#fff"
+        fontSize="28rpx"
+        :scroll="true"
+        height="60rpx"
+        lineHeight="10rpx"
+        lineColor="#2979ff"
+        :lineScale="0.5"
+        lineRadius="10rpx"
+        :pills="true"
+        pillsColor="#2979ff"
+        pillsBorderRadius="10rpx">
         <view class="tab-title" slot-scope="{ row, index }">
           <text>{{ row.name }},{{ index }}</text>
           <text>-1111</text>
@@ -98,6 +118,9 @@ export default {
         this.$refs.popup.open('bottom')
         this.showTabs = true
       }
+    },
+    changeTab0(index) {
+      console.log({ index, current: this.cur1 })
     },
     changeTab(index) {
       console.log('当前 index :' + index)

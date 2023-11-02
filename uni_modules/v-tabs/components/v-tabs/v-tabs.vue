@@ -21,7 +21,7 @@
           :key="i"
           :style="{
             color: current == i ? activeColor : color,
-            fontSize: current == i ? activeFontSize : fontSize,
+            fontSize: current == i ? fontSize : fontSize,
             fontWeight: bold && current == i ? 'bold' : '',
             justifyContent: !scroll ? 'center' : '',
             flex: scroll ? '' : 1,
@@ -60,8 +60,8 @@
 </template>
 
 <script>
-import props from './props'
 import { startMicroTask } from './utils'
+import props from './props'
 /**
  * v-tabs
  * @property {Number} value 选中的下标
@@ -90,6 +90,7 @@ import { startMicroTask } from './utils'
  * @event {Function(current)} change 改变标签触发
  */
 export default {
+  name: 'VTabs',
   props,
   data() {
     return {
@@ -122,9 +123,6 @@ export default {
         this.current = newVal
         this.$nextTick(this.update)
       }
-    },
-    current(newVal) {
-      this.$emit('input', newVal)
     }
   },
   methods: {
@@ -133,6 +131,7 @@ export default {
       const isDisabled = !!this.tabs[index].disabled
       if (this.current !== index && !isDisabled) {
         this.current = index
+        this.$emit('input', index)
         this.$emit('change', index)
       }
     },
@@ -230,9 +229,11 @@ export default {
   box-sizing: border-box;
   overflow: hidden;
 
+  /* #ifdef H5 */
   ::-webkit-scrollbar {
     display: none;
   }
+  /* #endif */
 
   &__container {
     min-width: 100%;

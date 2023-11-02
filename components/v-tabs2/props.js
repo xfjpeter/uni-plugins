@@ -35,7 +35,7 @@ export default {
   },
   bold: {
     type: Boolean,
-    default: true
+    default: false
   },
   scroll: {
     type: Boolean,
