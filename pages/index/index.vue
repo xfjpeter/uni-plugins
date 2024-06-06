@@ -12,6 +12,7 @@
 			<navigator url="../tabs/column">侧边 tabs</navigator>
 			<navigator url="../keyboard/keyboard">数字键盘</navigator>
 			<navigator url="../test-v-tab/test-v-tab">测试v-tab</navigator>
+			<navigator url="../tabs/swiper">左右滑动切换</navigator>
 		</view>
 	</view>
 </template>

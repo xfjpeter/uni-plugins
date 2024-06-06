@@ -4,7 +4,6 @@
       <v-tabs
         :tabs="tabs"
         v-model="current"
-        :scroll="false"
         line-color="#C7B099"
         active-color="#C7B099"
         style="width: 100%"
@@ -72,7 +71,12 @@ export default {
         { loadmore: 'loadmore', page: 1, data: [] },
         { loadmore: 'loadmore', page: 1, data: [] },
         { loadmore: 'loadmore', page: 1, data: [] },
-        { loadmore: 'loadmore', page: 1, data: [] }
+        { loadmore: 'loadmore', page: 1, data: [] },
+        { loadmore: 'loadmore', page: 1, data: [] },
+        { loadmore: 'loadmore', page: 1, data: [] },
+        { loadmore: 'loadmore', page: 1, data: [] },
+        { loadmore: 'loadmore', page: 1, data: [] },
+        { loadmore: 'loadmore', page: 1, data: [] },
       ],
       mockRowData: [
         {
@@ -124,7 +128,7 @@ export default {
   created() {
     // 模拟请求分类
     setTimeout(() => {
-      this.tabs = ['全部订单', '待付款', '待发货', '待收货', '已完成']
+      this.tabs = ['全部订单', '待付款', '待发货', '待收货', '已完成', '其他1', '其他2', '其他3', '其他4', '其他5']
       this.$refs.tabs.update()
       this.fillData()
     }, 500)

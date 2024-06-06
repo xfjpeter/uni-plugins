@@ -27,6 +27,12 @@
 			}
 		},
 		{
+			"path": "pages/tabs/swiper",
+			"style": {
+				"navigationBarTitleText": "tabs + swiper组合"
+			}
+		},
+		{
 			"path": "pages/tabs/tabs-static",
 			"style": {
 				"navigationBarTitleText": "固定在顶部"
