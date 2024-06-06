@@ -1,7 +1,7 @@
 {
   "id": "v-tabs",
   "displayName": "自定义 tab 选项卡 2",
-  "version": "2.1.5",
+  "version": "2.1.6",
   "description": "自定义 tab ，支持多种样式，支持 h5 小程序 app",
   "keywords": [
     "v-tabs",
@@ -38,7 +38,8 @@
     "platforms": {
       "cloud": {
         "tcb": "y",
-        "aliyun": "y"
+        "aliyun": "y",
+        "alipay": "n"
       },
       "client": {
         "Vue": {
