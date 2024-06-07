@@ -3,6 +3,10 @@ export default {
     type: Number,
     default: 0
   },
+  modelValue: {
+    type: Number,
+    default: 0
+  },
   tabs: {
     type: Array,
     default() {

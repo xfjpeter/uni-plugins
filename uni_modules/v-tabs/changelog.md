@@ -1,4 +1,6 @@
-### 2.1.6（2024-06-06）
+## 2.1.8（2024-06-07）
+1. [新增]支持`vue3`了
+## 2.1.6（2024-06-06）
 1. [修复]当有`fixed`属性之后，在支付宝小程序无法滚动的bug
 ## 2.1.5（2023-11-02）
 1. [修复]修复`change`和`v-model`绑定的值不同步
@@ -9,14 +11,12 @@
 2. [新增]外部可以通过`this.$refs.tabs.update()`方法主动更新
 ## 2.1.3（2023-09-11）
 1. [新增]支持自定义插槽模式，具体可以查看示例代码使用方式。[gitee demo](https://github.com/xfjpeter/uni-plugins/blob/3e2bd062163f664889122fd74b8bd6ccad6a97f1/pages/tabs/tabs.vue#L47C10-L50C16) 或 [github demo](https://github.com/xfjpeter/uni-plugins/blob/3e2bd062163f664889122fd74b8bd6ccad6a97f1/pages/tabs/tabs.vue#L47C10-L50C16)
-
 ## 2.1.2（2023-06-12）
 1. [新增]添加`z-index`参数控制层级大小，默认1993
 2. [说明]以后该插件只更新`uni_modules`方式的，`zip`方式的不提供更新了
 ## 2.1.1（2022-09-16）
 1. 将插件更新为`uni_modules`方式
 ## 2.1.0（2022-08-12）
-
 1. 增加`disable`参数，控制是否可以点击，只能应用在数组对象中，见[disabled 的用法](#112-当tabs使用的数组对象的方式特定参数需要注意一下)
 
 ```js

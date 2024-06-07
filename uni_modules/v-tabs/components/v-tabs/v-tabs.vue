@@ -92,6 +92,9 @@ import props from './props'
 export default {
   name: 'VTabs',
   props,
+  // #ifdef VUE3
+  emits: ['update:modelValue', 'change'],
+  // #endif
   data() {
     return {
       lineWidth: 30,
@@ -117,7 +120,12 @@ export default {
     }
   },
   watch: {
+    // #ifdef VUE3
+    modelValue: {
+    // #endif
+    // #ifdef VUE2
     value: {
+    // #endif
       immediate: true,
       handler(newVal) {
         this.current = newVal
@@ -131,7 +139,12 @@ export default {
       const isDisabled = !!this.tabs[index].disabled
       if (this.current !== index && !isDisabled) {
         this.current = index
+        // #ifdef VUE3
+        this.$emit('update:modelValue', index)
+        // #endif
+        // #ifdef VUE2
         this.$emit('input', index)
+        // #endif
         this.$emit('change', index)
       }
     },
