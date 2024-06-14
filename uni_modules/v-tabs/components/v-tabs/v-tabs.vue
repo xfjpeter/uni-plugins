@@ -128,7 +128,7 @@ export default {
     // #endif
       immediate: true,
       handler(newVal) {
-        this.current = newVal
+        this.current = newVal > -1 && newVal < this.tabs.length ? newVal : 0
         this.$nextTick(this.update)
       }
     }
