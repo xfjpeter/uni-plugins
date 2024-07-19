@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import { startMicroTask } from './utils'
+import { startMicroTask, throttle } from './utils'
 import props from './props'
 /**
  * v-tabs
@@ -128,14 +128,14 @@ export default {
     // #endif
       immediate: true,
       handler(newVal) {
-        this.current = newVal
+        this.current = newVal > -1 && newVal < this.tabs.length ? newVal : 0
         this.$nextTick(this.update)
       }
     }
   },
   methods: {
     // 切换事件
-    change(index) {
+    change: throttle(function(index) {
       const isDisabled = !!this.tabs[index].disabled
       if (this.current !== index && !isDisabled) {
         this.current = index
@@ -145,9 +145,8 @@ export default {
         // #ifdef VUE2
         this.$emit('input', index)
         // #endif
-        this.$emit('change', index)
       }
-    },
+    }, 300),
     createQueryHandler() {
       const query = uni
         .createSelectorQuery()

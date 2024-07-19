@@ -2,7 +2,7 @@
   <view class="container">
     <view class="mb-20">
       <view class="title">正常加载</view>
-      <v-tabs :tabs="tabs" ref="tabs" v-model="current" :line-animation="lineAnimation"></v-tabs>
+      <v-tabs :tabs="tabs0" field="name" ref="tabs" v-model="current" :line-animation="lineAnimation"></v-tabs>
     </view>
     <view class="mb-20">
       <view class="title">延迟加载，使用 update() 更新</view>
@@ -24,6 +24,11 @@ export default {
   data() {
     return {
       current: 3,
+      tabs0: [
+        {name: '资讯', id: 'zixun'},
+        {name: '快讯', id: 'kuaixun'},
+        {name: '日历', id: '日历'}
+      ],
       tabs: [
         '军事',
         '国内',
