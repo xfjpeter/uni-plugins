@@ -1,7 +1,7 @@
 {
   "id": "v-tabs",
   "displayName": "自定义 tab 选项卡 2",
-  "version": "2.1.9",
+  "version": "2.2.2",
   "description": "自定义 tab ，支持多种样式，支持 h5 小程序 app",
   "keywords": [
     "v-tabs",
@@ -47,8 +47,9 @@
           "vue3": "y"
         },
         "App": {
-          "app-vue": "y",
-          "app-nvue": "n"
+            "app-vue": "y",
+            "app-nvue": "n",
+            "app-uvue": "u"
         },
         "H5-mobile": {
           "Safari": "y",

@@ -145,13 +145,16 @@ export default {
         // #ifdef VUE2
         this.$emit('input', index)
         // #endif
+        this.$emit('change', index)
       }
     }, 300),
     createQueryHandler() {
-      const query = uni
-        .createSelectorQuery()
-        // #ifndef MP-ALIPAY
-        .in(this)
+      let query
+      // #ifndef MP-ALIPAY
+      query = uni.createSelectorQuery().in(this)
+      // #endif
+      // #ifdef MP-ALIPAY
+      query = uni.createSelectorQuery()
       // #endif
 
       return query
