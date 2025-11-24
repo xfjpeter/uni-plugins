@@ -129,8 +129,9 @@ export default {
     // 模拟请求分类
     setTimeout(() => {
       this.tabs = ['全部订单', '待付款', '待发货', '待收货', '已完成', '其他1', '其他2', '其他3', '其他4', '其他5']
-      this.$refs.tabs.update()
       this.fillData()
+      
+      setTimeout(() => this.$refs.tabs.update(), 100)
     }, 500)
   }
 }

@@ -1,7 +1,9 @@
 <template>
   <view class="v-tabs">
     <scroll-view
-      :id="getDomId"
+      :id="domId"
+      :enhanced="true"
+      :show-scrollbar="false"
       :scroll-x="scroll"
       :scroll-left="scroll ? scrollLeft : 0"
       :scroll-with-animation="scroll"
@@ -96,7 +98,15 @@ export default {
   emits: ['update:modelValue', 'change'],
   // #endif
   data() {
+    const len = 16
+    const $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678'
+    const maxPos = $chars.length
+    let pwd = ''
+    for (let i = 0; i < len; i++) {
+      pwd += $chars.charAt(Math.floor(Math.random() * maxPos))
+    }
     return {
+      domId: `xfjpeter_${pwd}`,
       lineWidth: 30,
       currentWidth: 0, // 当前选项的宽度
       lineLeft: 0, // 滑块距离左侧的位置
@@ -105,18 +115,6 @@ export default {
       container: { width: 0, height: 0, left: 0, right: 0 }, // 容器的宽高，左右距离
       current: 0, // 当前选中项
       scrollWidth: 0 // 可以滚动的宽度
-    }
-  },
-  computed: {
-    getDomId() {
-      const len = 16
-      const $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678' /****默认去掉了容易混淆的字符oOLl,9gq,Vv,Uu,I1****/
-      const maxPos = $chars.length
-      let pwd = ''
-      for (let i = 0; i < len; i++) {
-        pwd += $chars.charAt(Math.floor(Math.random() * maxPos))
-      }
-      return `xfjpeter_${pwd}`
     }
   },
   watch: {
@@ -145,13 +143,16 @@ export default {
         // #ifdef VUE2
         this.$emit('input', index)
         // #endif
+        this.$emit('change', index)
       }
     }, 300),
     createQueryHandler() {
-      const query = uni
-        .createSelectorQuery()
-        // #ifndef MP-ALIPAY
-        .in(this)
+      let query
+      // #ifndef MP-ALIPAY
+      query = uni.createSelectorQuery().in(this)
+      // #endif
+      // #ifdef MP-ALIPAY
+      query = uni.createSelectorQuery()
       // #endif
 
       return query
@@ -163,7 +164,7 @@ export default {
         if (!this.tabs.length) return
         _this
           .createQueryHandler()
-          .select(`#${this.getDomId}`)
+          .select(`#${this.domId}`)
           .boundingClientRect(data => {
             const { width, height, left, right } = data || {}
             // 获取容器的相关属性
@@ -177,7 +178,7 @@ export default {
     },
     // 计算可以滚动的宽度
     calcScrollWidth(callback) {
-      const view = this.createQueryHandler().select(`#${this.getDomId}`)
+      const view = this.createQueryHandler().select(`#${this.domId}`)
       view.fields({ scrollOffset: true })
       view
         .scrollOffset(res => {
@@ -196,7 +197,7 @@ export default {
         // 动态读取 scrollLeft
         let scrollLeft = res.scrollLeft
         this.createQueryHandler()
-          .select(`#${this.getDomId} .v-tabs__container-item.active`)
+          .select(`#${this.domId} .v-tabs__container-item.active`)
           .boundingClientRect(data => {
             if (!data) return
             // 除开当前选项外容器的一半宽度
@@ -217,7 +218,7 @@ export default {
       this.calcScrollWidth(res => {
         const scrollLeft = res.scrollLeft
         this.createQueryHandler()
-          .select(`#${this.getDomId} .v-tabs__container-item.active`)
+          .select(`#${this.domId} .v-tabs__container-item.active`)
           .boundingClientRect(data => {
             if (!data) return
             if (this.pills) {

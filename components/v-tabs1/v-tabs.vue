@@ -220,7 +220,7 @@ export default {
   }
 }
 
-/deep/ ::-webkit-scrollbar {
+::v-deep ::-webkit-scrollbar {
   display: none;
 }
 </style>
